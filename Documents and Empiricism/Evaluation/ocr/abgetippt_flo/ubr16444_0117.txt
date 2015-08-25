@@ -1,0 +1,9 @@
+notation:
+I gu nid hei bis morgan isch, und bis der Ä-ti s'morgan isst, i
+gu nid hei bis morgan isch und bis der Ä-tti isst.
+
+druck:
+I gu nid hei bis 's morgan isch
+Und bis der Ätti der Ribel ißt;
+I gu nid hei bis 's morgan isch
+Und bis der Ätti ißt.

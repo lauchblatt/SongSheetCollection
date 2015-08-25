@@ -1,0 +1,1823 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red109\green109\blue109;\red0\green0\blue233;
+\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa321\qc
+
+\f0\b\fs48 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Nineteenth Australasian Computer Science Conference\
+An extensible Optical Music Recognition system\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trmarl3900 \trmarr3900 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3840\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth3840\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc
+
+\i\b0\fs28 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 David\'a0Bainbridge
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\
+Department of Computer Science \
+University of Waikato \
+Hamilton, New Zealand \
+\
+
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 d.bainbridge@cs.waikato.ac.nz
+\i0\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \cell 
+\pard\intbl\itap1\pardeftab720\qc
+
+\i\fs28 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Tim\'a0Bell
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\
+Department of Computer Science \
+University of Canterbury \
+Christchurch, New Zealand\
+\
+
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 tim@cosc.canterbury.ac.nz
+\i0\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \cell \lastrow\row
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\
+\pard\pardeftab720\sa240\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\
+\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Abstract\
+\pard\pardeftab720\sa240
+
+\i\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Optical music recognition (OMR) is a form of structured document image analysis where symbols overlaid on the conventional five-line stave are isolated and identified so that the music can be played through a MIDI system, or edited in a music publishing system. Traditionally OMR systems have had recognition techniques hard-coded in software. This paper describes a system that has been designed to be extensible without the need to change the system's source code. Extensibility is achieved by providing tools for music recognition that are used to tailor the system to suit the type of music being recognised. The tools include a selection of methods for identifying staves and isolating objects from them, methods for describing and identifying primitive musical shapes, and a grammar for specifying the relationships between the shapes that are recognised. The system is flexible enough to work with different publishers' symbol sets, and even with different types of music notation, such as the square-note notation used in early music.
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Keywords
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\'a0music recognition, document image analysis, two-dimensional grammars\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1 Introduction\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Optical Music Recognition (OMR) enables people to scan printed music onto a computer and have it played by the computer, or brought up in a music editor. OMR has many applications. For example, a soloist can practise with a computer playing an accompaniment; a musician can have a piece of music transposed to another key automatically; the notation of the music could be converted (for example, to tablature or Braille); or an old edition of the music could be re-edited.\
+OMR is related to Optical Character Recognition (OCR), but presents some significant extra challenges. One important different is that music is two-dimensional (pitch vertically and time horizontally), while text is essentially one-dimensional. Another significant complication in music is that the symbols are usually overlayed on a five-line stave, so it is difficult to isolate symbols. Also, unlike OCR, symbols are made up of components that can be combined in many ways. For example, a stem may hold a number of note heads, and may be beamed to another stem. A further difference is that the same symbol may appear in different forms. For example, the lengths of slurs, ties, beams, and stems will depend on the context in which they are used.\
+OMR is complex and must incorporate many rules about what can appear in musical notation. Existing systems tend to have the rules hard-coded into the OMR program (see Selfridge-Field\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#SF94"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 13}}] for a survey of recent systems). This paper describes the C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/#44"}}{\fldrslt 
+\fs24 \cf4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 }}
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system, which has been designed to be as general as possible by allowing the user to define the rules that describe the music notation. This means that the system is readily adapted to variations of notation used by various publishers for Common Music Notation (CMN), and it also means that completely different forms of notation can be recognised, such as the square-note notation used with four-line staves for early music.\
+Other systems have been designed for adaptation either by writing the program so that it is easily modified\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#Car89"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 6}}] or by keeping track of corrections made to a recognised document, and ``learning'' not to make the same mistake next time\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#Fuj92"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 12}}]. However, although these systems can incorporate new features of CMN, they are not easily adapted to alternative notations.\
+OMR systems generally have the following four stages in their recognition process.\
+\
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Stave line identification
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The position of the staves is identified, and (usually) the lines are removed, leaving the superimposed musical symbols (see Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figstages"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}}a).\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\
+\
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Musical object location
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The symbols that were on and around the stave are located (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figstages"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}}b).\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Symbol identification
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The type of each symbol is determined (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figstages"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}}c).\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Semantics of music notation
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The relationship between symbols is determined and the information is stored in a form that programs such as sequencers or music editors can use (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figstages"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}}d).\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+This paper focuses on the symbol identification stage, as this is the one that is the most dependent on the kind of notation being recognised. The structure of the paper is as follows. Section\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#secstaves"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}} describes the pre-processing required to isolate objects on a score. Section\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#secprimitives"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 3}} discusses a general system that has been developed for recognising the primitive objects that have been isolated, and Section\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#secassembling"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 4}}describes a technique for assembling these objects into musical features. In Section\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#secalternative"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 5}} we discuss how the system can be adapted to alternative music notations.\
+\
+\pard\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\'a0\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth10780\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl1550 \trmarr1550 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth7480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (a)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth10780\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl1550 \trmarr1550 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth7480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (b)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth10780\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl1550 \trmarr1550 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth7480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (c)
+\f1\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth10780\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth10580\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 Staff System 1:\
+Staff 1:\
+\{4Db 4F 4Ab 5Db\}(0.5),\{4Eb 4Ab 5C 5Eb\}(0.5),\{4F 4Ab 5Db 5F\}(0.5),\{4Ab 5Ab\}(0.5),\
+\{4Gb 4Bb 5Eb 5Gb\}(0.5),\{4F 4Ab 5Db 5F\}(0.5),\{4Eb 4Ab 5C 5Eb\}(0.5),\
+\{4Gb 5Gb\}(0.5),\{4F 4Bb 5Db 5F\}(0.5),\{4Db 5Db\}(0.5),\{5Eb 4Eb 4Ab 5C\}(1.0) | \
+\{4Ab 3Ab\}(1.0)&amp;4Eb(3.0),\{4Bb 3Bb\}(1.0),\{4Ab 3Ab\}(1.0),\{4Bb 3Bb\}(0.5)&amp;4Eb(1.0)\\_,\
+\{4C 5C\}(0.5),\{5Eb 4Eb\}(0.5)&amp;_/4Eb(0.5),\{3Bb 4Bb\}(0.5) | .....\
+\
+Staff 2:\
+\{2F 3F\}(0.5),\{2Eb 3Eb\}(0.5),\{3Db 2Db\}(1.0),\{2Eb 3Eb\}(0.5),\{2F 3F\}(0.5),\
+\{2Ab 3Ab\}(1.0),\{2Bb 3Bb\}(1.0),\{2Ab 3Ab\}(1.0) | \{1Gb 2Gb\}(2.0),\{2F 1F\}(1.0),\
+\{1Gb 2Gb\}(1.0),\{2Gb 3Gb\}(0.5),rest(0.5) | .....\
+\pard\intbl\itap2\pardeftab720\qc
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (d)\nestcell \lastrow\nestrow\cell \lastrow\row
+\pard\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 1:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Stages in a typical OMR process (a) removal of the staves (b) locating objects (c) identifying symbols (d) determining the semantics.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a02 Detecting stave lines and locating objects\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The first stage in OMR is identifying where the stave lines are. This is usually straight-forward because the five lines are a very regular feature on the page, and can be found reliably by taking a horizontal projection of the number of black pixels on each line of the image. Stave lines will be marked by peaks in the histogram of the projection. Unfortunately such peaks deteriorate if the page was not straight when scanned. A simple modification to compensate for this is to restrict the horizontal projection to short sections on the left hand side and right hand side of the page, and then connect the corresponding detected lines. Identifying stave lines in this manner can be used to establish the angle of rotation required to correct the scanned image. Occasionally large horizontal objects such as phrase marks may cause ``false'' peaks, but this problem can be avoided by looking for regular spacing in the peaks.\
+A standard OCR method is then applied to the image at this stage to identify and remove any text (such as titles, lyrics, part names, and dynamic markings) on the image. Applying it at this stage means that the OCR package is dealing with a straightened page, and simplifies later stages because the music recognition system does not need to be concerned about misinterpreting parts of the text as a musical feature.\
+A new image is then constructed in which the lines are removed. Because musical features overlap the lines, it is not a good idea to simply remove all of the black pixels along a line, as considerable post-processing is needed to reconstruct objects that get broken up. Several methods have been proposed to prevent objects being broken up. The C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system uses a method described by Clarke\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#CBT88a"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 7}}] in which black pixels are removed only if there are no black pixels above or below the line in the vicinity of the one under consideration. This process can still break up some musical features, but we retain the original image as well, which enables us later on in the system, to check whether a black pixel has been removed in cases where the recognition system would expect to find one.\
+The musical objects left after stave removal are located by searching for black pixels, and finding connected pixels using a flood-fill algorithm\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#FDFH90"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 10}}]. One method of coping with fragmented objects is to devise a heuristic that merges bounding boxes together by comparing adjacent bounding boxes in the vicinity of stave lines. For example, Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figbassClef"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}}a shows a bass clef that is broken up by stave removal (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figbassClef"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}}b), but reconstructed by the joining of bounding boxes (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figbassClef"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}}c). An alternative to this approach would be to reconstruct the bass clef at a later stage by defining a bass clef to be constructed from the two components in Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figbassClef"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}}b. Another possibility is to use the isolated shapes to detect where objects might be, but to match against the original image if the shape is prone to being broken up by stave-line removal. Fragmentation is a serious problem in OMR, and it is valuable to have several methods available to overcome the complications that it causes.\
+\
+\pard\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\'a0\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2820\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalt\clvertalbase \clshdrawnil \clwWidth3220\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalt\clvertalbase \clshdrawnil \clwWidth3220\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth2620\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (a)\cell 
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth3020\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (b)\cell 
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth3020\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (c)\cell \lastrow\row
+\pard\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 2:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Locating a bass clef (a) the original image (b) broken up by stave removal (c) reconstructed.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 3 Recognising primitive objects\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 In the next phase, C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  recognises the primitive objects on the page of music from which the staves have been removed. It looks for the components of musical features, such as note-heads, stems, and tails, rather than whole objects, because there are many ways of combining primitive objects to create musical features (Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figprimitives"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 3}}).\
+\
+\pard\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\'a0\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth4240\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth5220\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth4040\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (a)\cell 
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth5020\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (b)\cell \lastrow\row
+\pard\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 3:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (a) Primitive objects (b) Musical features constructed from primitive objects.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Various techniques have been used in the literature to recognise objects after the staves have been removed. A commonly used method is to use a set of templates that are matched against objects that have been isolated. A measure is made of the similarity between an object being matched, and each available template, with the highest rating match being used, provided that it passes some threshold. The drawback with this method is that the shapes of objects can vary greatly from publisher to publisher, and even within a piece of music. Also, some shapes are very similar, such as bar lines and stems, and even hollow and filled note-heads, while other musical features appear in an infinite variety of variations, such as slurs and beams. Furthermore, matching can be slow because each isolated object must be compared with every template (which can be particularly time-consuming if many variations of each symbol are stored, and symbols can be scaled.)\
+Several alternatives have been proposed to either accelerate this process, or to make it more reliable. Fujinaga\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#Fuj88"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 11}}] used 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 projections
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (both horizontal and vertical) to create a signature of an object, and match that with projections of previously identified objects. The 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Hough transform
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  is used in image processing to locate straight lines and curves\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#BT88"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 4}}] and has proved useful for finding bar-lines, stems, and the curl of a bass clef. The technique of 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 slicing
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  involves taking a cross-section through an object at a predetermined position, and counting the number of transitions from black to white pixels\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#AB67"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}}]. For example, a slice near the bottom of a natural sign () would find one transition, while a slice across the same part of a sharp sign () would find two. Like slicing, 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 connectivity analysis
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#Bai91"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}}] is another pattern recognition technique that is particularly suited to classifying musical features that are dynamic in their size within one piece of music, such as slurs. Connectivity analysis answers the question, is there a path through the object from (,\'a0) to (,\'a0) (where <) with 
+\i\b \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 x
+\i0\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  monotonically increasing. Connectivity analysis is useful for detecting beams and slurs.\
+Rather than opting for just one of these techniques, C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  makes them all available. They are invoked through a language designed as part of C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  for this purpose, called P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIM
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 itive Expression L
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 A
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 nguage), through which any combination of these techniques can be used to identify a primitive object in the input image. The system also includes a graphical editor that can be used to draw free-form shapes, which can be used as scalable templates, as profiles for projections, and to provide curves for the Hough transform. The free-form images can be based on scanned examples from music. A part of a scanned image is placed in the background of the graphical editor, and free-form curves can then be placed on top of it, capturing the main features of a shape rather than the specific features of the scanned example. The editor can also perform a projection of a shape, and a characteristic curve can be drawn for the projection rather than the original shape. The graphical editor provides textual output, which is simply a list of points on a B-spline curve that describe the object. This output is used directly in the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  language.\
+Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figprimela"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 4}} shows some P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  code for recognising a treble clef. The 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 size
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  and 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 normalise
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  commands determine the size the symbol is relative to the size of a stave. The clef is matched by comparing the horizontal projections of the pre-drawn treble clef with the same projection of the object in the image that is being identified (
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 yproject
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  on line\'a04). The model treble-clef is described by the list of\'a014 points on an open B-spline curve (lines\'a08 to\'a011). This curve was created by fitting a B-spline curve onto the projection of a scanned treble clef using the graphical editor.\
+\'a0\uc0\u8232 \'a0
+\f1\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth9980\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2      1  primitive treble_clef\
+     2   : size(42,145), normalise(1.0)\
+     3  \{\
+     4    yproject ptc\
+     5      \{\
+     6        transform: scale(0.333333,0.333333), translate(23.333333,106.333333)\
+     7          \{\
+     8            bspline 2 open 14 \
+     9                      (-70  115) (-01   95) (-02   62) (-61   22) (-48  -39) \
+    10                      (-27 -100) ( 56 -107) ( 43 -133) (-44 -175) (-09 -217)\
+    11                      (-65 -230) (-67 -271) (-29 -293) (-56 -319);\
+    12          \}\
+    13      \}\
+    14  \
+    15    initialise\
+    16      \{\
+    17        string option_box = "object";\
+    18  \
+    19        int yproject_lower_match = 70;\
+    20        int yproject_upper_match = 75;\
+    21  \
+    22        int y_copy_expand  = 2;\
+    23      \}\
+    24  \
+    25    match\
+    26      \{\
+    27        pre       \{% %\}\
+    28        rect      \{% rect_yb_ += y_copy_expand;                           %\}\
+    29        copy      \{% %\}\
+    30        post      \{% %\}\
+    31        certainty \{% linear_certainty(yproject_lower_match,score_match_,\
+    32                                      yproject_upper_match);              %\}\
+    33        remove    \{% %\}\
+    34      \}\
+    35  \}\cell \lastrow\row
+\pard\pardeftab720
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 4:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  P
+\fs20 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  code for recognising a treble clef.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 initialise
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  section (lines\'a015 to\'a023) sets some thresholds and declares dynamic variables for use during matching, which is then performed in the 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 match
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  section (lines\'a025 to 34). The 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 match
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  section describes criteria for making a match, such as pre-conditions that must be satisfied by the image, a tolerance for the bounding rectangle that contains the object, thresholds for the certainty of a match before it will be accepted, and rules for removing the recognised object from the image. By leaving the brackets empty for the copy and remove commands, a default behaviour of copying and removing (respectively) every pixel in the rectangular regions, is invoked.\
+Objects that are recognised with a high certainty are removed from the image, as this simplifies later searches because it reduces the set of objects to which an unknown one might belong. Objects that pass a lower matched threshold are tagged as ``uncertain'' primitives and given a rating between zero and one to reflect this, but are left in the image. The certainty rating is used later on in C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , when the primitive shapes are combined into valid musical features.\
+P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  code for CMN is currently under development, and is being tested on a number of pieces from different publishers. Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabprim1"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 1}} shows statistics from using P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  to recognise primitive objects in two pages of the piece ``Big My Secret'' by Michael Nyman, published by Chester Music. The opening of this piece is shown in Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figinputAndOutput"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 7}}. Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabprim2"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}} shows the same statistics for the piece ``Bonita'' by Vander Cook, published in 1943 by Rubank Inc. The music for this had a two-stave piano part, and a violin part on a smaller stave. Some of the musical features were touching (such as a flat superimposed on a slur), which provides an extra challenge for OMR.\
+\'a0\'a0\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Feature\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number in Original\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number recognised correctly\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 False hits\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Treble clef\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bass clef\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Sharp\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 32\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 31\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Vertical line\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 495\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 495\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 9\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Slur\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 67\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 64\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Beam\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 199\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 185\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Filled note head\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 490\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 490\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Dot\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 44\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 44\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \lastrow\row
+\pard\pardeftab720\qc
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Table 1:
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Statistics for recognition of primitives in ``Big My Secret''\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\'a0\'a0\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Feature\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number in Original\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number recognised correctly\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 False hits\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Treble clef\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 16\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 15\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bass clef\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Crochet rest\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 41\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 40\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 3\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Rectangular rest\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 24\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 17\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Sharp\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 14\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 12\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Natural\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 18\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 17\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Flat\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 68\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 44\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 2\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Vertical line\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 379\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 379\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Slur\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 34\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 12\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 2\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Beam\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 33\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 32\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Filled note head\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 476\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 476\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 21\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1580\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1400\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Dot\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 43\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 16\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \lastrow\row
+\pard\pardeftab720\qc
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Table 2:
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Statistics for recognition of primitives in ``Bonita''\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The tables show high recognition rates for many objects, and the poor performance on some objects was mainly due to weaknesses in the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  descriptions, which are still under development. Our experience developing these descriptions indicates that it is not difficult to refine the code to eliminate false matches and unrecognised symbols.\
+The nine false hits for vertical lines in Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabprim2"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 2}} are due to mistaking tails on quavers, and the number ``1'' for a vertical line. This could be avoided by searching for quaver tails before vertical lines, and by using a better OCR system to remove the numbers more reliably. The 14 beams not recognised were shorter than the minimum length in the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  description.\
+A number of errors occurred recognising the ``Bonita'' piece because the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  description is yet to be fine tuned for it. A large number of slurs were missed because they are thick in this piece, and were confused with beams. This could be fixed by making the recognition rely more on the curvature of the object than its thickness. The large number of false hits for note-heads was mainly due to a beam being mistaken for a series of note-heads. A large number of dots were missed simply because the precondition for size (designed for another publisher's style) was too small.\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a04 Assembling primitive objects into musical features\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Once the primitive objects on the page have been identified, they must be assembled into the larger objects that they are a part of. For example, note-heads and stems combine to form notes, and a sequence of sharps in a particular context can form a key signature. Such assembly tasks are common in structured document image analysis problems, and a variety of techniques exist\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#BBY92"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 3}}]. A grammar-based approach for music recognition is favoured since it also meets our specific requirement of generality--each form of notation would have its own grammar that defines valid configurations of the primitive shapes.\
+The assembly phase in C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  is implemented using Definite Clause Grammars (DCG's). DCG's are similar to BNF, but use a slightly different notation which make them amenable to implementation in a Prolog environment. Many Prolog systems have facilities for processing DCG's\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#Bra90"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 5}}]. In Prolog, a DCG can be used to construct sentences in the grammar as well as parse existing sentences. This flexibility is ideal for assembling musical objects.\
+Music notation is two-dimensional, so some adaptation needs to be made to conventional grammars to allow for this. The OMR system devised by Co\'fcasnon 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 et al
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 .\'a0[{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#CBS95"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 8}}, {\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#CC94"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 9}}] is also based on a DCG. They cope with two-dimensions by extending the set operators that the grammar can use, and relying on Prolog (a higher-order extension of Prolog). However, they report that developing a parser is a difficult task. This is due to the more complex task that their grammar is expected to perform, as it forms the top level control to their system, and not only assembles primitive shapes into musical features, but also controls when to join and segment shapes, as well as specifying ``how to read music.'' No statistical results are available for their system.\
+Another option is to replace the one-dimensional list of tokens with a higher order data-structure. Tree grammars and graph grammars use this idea, and have been employed successfully in two-dimensional document image analysis. A drawback of this approach is that the increased generality increases the complexity of the parser.\
+C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  avoids such complications by using the conventional form of a DCG, except instead of using a 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 list
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  of tokens for the input, a 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 bag
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  of tokens is used. Instead of getting a unique next symbol, the grammar can ``request'' a token (say a note-head) from the bag, and if its position does not fit in with the current musical feature (say a note) that is being parsed, then the grammar can back-track and request the ``next'' note-head from the bag. Constraints such as ``must be close to the selected stem'' are naturally incorporated into a DCG by embedding Prolog into it. It is relatively simple to add bags to a DCG; for our system a 247 line implementation of a DCG increased in size by 90\'a0lines to accommodate bags. Also, some additional terms were added, such as 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 prim_present
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (primitive present), to provide additional information for assembling the primitives.\
+Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figdcg"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 5}} shows parts of the DCG for describing valid configurations for a simple ``up'' note, that is, one or more note-heads with a stem going up. The first production chooses a vertical line and looks for tails or note-heads that are close by. The second production allows multiple note-heads to be associated with the same stem. The 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 note_head_within_up
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  production checks to see if a selected note-head is close enough to the stem. The 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 note_head
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  production selects note-heads to check in the 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 note_head_within_up
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  production. It also discovers any duration modifying dots to the right of the note-head using 
+\f1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 opt_dur_dots
+\f0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , and stores the duration of the note in the derivation tree.\
+\
+\'a0\uc0\u8232 \'a0
+\f1\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth8420\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 basic_note_up				\
+	 ==&gt; [(vertical_line,_,Sxl,Syt,Sxr,Syb,_)], \
+	     opt_tails_up(Sxl,Syt,Syb,NoTails),\
+	     note_heads_up(Sxl,Syt,Syb,NoTails).\
+\
+note_heads_up(Sxl,Syt,Syb,NoHalves) 	\
+	 ==&gt; note_head_within_up(Sxl,Syt,Syb,NoHalves),\
+	     note_heads_up(Sxl,Syt,Syb,NoHalves).\
+note_heads_up(Sxl,Syt,Syb,NoHalves)	\
+	 ==&gt; note_head_within_up(Sxl,Syt,Syb,NoHalves).\
+\
+note_head_within_up(Sxl,Syt,Syb,NoHalves) \
+	 ==&gt; note_head(Syt,Syb,NoHalves,Nxl,Nyt,Nxr,Nyb), \
+	     \{ % note head must be close to stem (to the left) \}.\
+\
+note_head(Syt,Syb,NoHalves)	\
+	 ==&gt; [(full_note_head,_,Nxl,Nyt,Nxr,Nyb,_)], \
+	     \{ % retrieve appropriate StaffGap for note head \},\
+	       opt_dur_dots(Nxr,StaffGap,Nyt,Nyb,NoDots), \
+	     \{ % store note head duration \}.\
+\
+opt_dur_dots(Nxr,StaffGap,Nyt,Nyb,NoDots)		\
+	 ==&gt; opt_dur_dots(Nxr,StaffGap,Nyt,Nyb,0,NoDots).\
+opt_dur_dots(Nxr,StaffGap,Nyt,Nyb,NoDotsIn,NoDotsOut)	\
+	 ==&gt; [(dot,_,Dxl,Dyt,Dxr,Dyb,_)],\
+	     \{ % check dot close enough to note head \},\
+	     \{ IncNoDots is NoDotsIn + 1 \},\
+	       opt_dur_dots(Dxr,StaffGap,Nyt,Nyb,IncNoDots,NoDotsOut).\
+opt_dur_dots(_,_,_,_,NoDots,NoDots)			\
+	 ==&gt; []. % epsilon\
+\
+% opt_tails_up similar to opt_dur_dots\cell \lastrow\row
+\pard\pardeftab720
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 5:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  DCG clauses that describe a simple ``up'' note consisting of note heads, a stem, dots and tails.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The constraints used in the DCG that measure the ``closeness'' of objects are normalised with respect to the size of the stave that they are on. A score can have different size staves for different parts, so some care is required to identify which stave a feature belongs to. A note is usually associated with the stave it is nearest to. For notes that are close to two different-sized staves we perform a match at both sizes, and use the best match. More accuracy could be obtained by locating ledger lines and using these to determine which stave a note belongs to.\
+Because the parser is based on back-tracking, the amount of time taken can increase combinatorially. Prudent use of the cut operator is necessary to achieve tractable time complexities.\
+Attributed derivation trees of the assembled musical features are constructed during the parse, from which the semantics of the music can be determined. A derivation tree for a crochet note is shown in Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figderivationTree"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 6}}. Determining the semantics is also partially done during parsing--for example, while parsing a note it is possible to calculate its duration, and this information can be conveniently passed on to the musical semantics stage by storing it as an attribute at the appropriate node of the derivation tree.\
+\'a0\uc0\u8232 \'a0\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth11300\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \cell \lastrow\row
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \uc0\u8232 
+\b \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 6:
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  A derivation tree for crotchet note.\uc0\u8232 \
+Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabassembly1"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 3}} shows statistics for the assembly of components recognised by P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  for ``Big My Secret.'' Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabassembly2"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 4}} shows the same statistics for ``Bonita.''\
+\
+\'a0\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Components \
+assembled\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number\
+required\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number\
+assembled\
+correctly\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Incorrect\
+associations\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Dot with note-head\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 22\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 22\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Note-head with stem\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 483\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 483\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Note with beam\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 411\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 410\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Nested beams\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 99\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 99\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bass clef curl with two dots\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bar-line on stave\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 25\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 25\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1\cell \lastrow\row
+\pard\pardeftab720\qc
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Table 3:
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Statistics for assembly of primitives in \
+``Big My Secret''\
+\pard\pardeftab720\sa240\qc
+
+\fs20 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Components \
+assembled\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number\
+required\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Number\
+assembled\
+correctly\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Incorrect\
+associations\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Dot with note-head\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 6\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 6\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Note-head with stem\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 478\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 478\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Note with beam\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 88\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 88\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Nested beams\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 4\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 4\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bass clef curl with two dots\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 2\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 2\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 0\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth2680\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalt\clvertalbase \clshdrawnil \clwWidth800\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1000\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalt\clvertalbase \clshdrawnil \clwWidth1160\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Bar-line on stave\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 90\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 90\cell 
+\pard\intbl\itap1\pardeftab720\qr
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1\cell \lastrow\row
+\pard\pardeftab720\qc
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Table 4:
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Statistics for assembly of primitives in ``Bonita''\
+\pard\pardeftab720\sa240\qc
+
+\fs20 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a0
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The assembly stage has achieved near 100% accuracy because it is very easy to distinguish which grammar production should be applied due to CMN being so structured. The only errors are due to mis-recognised objects from P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . For example, the single ``note with beam'' error in Table\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#tabassembly1"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 3}} was due to the OCR system leaving a number above a beamed note, which P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  mistook for the top of a long stem that extended above the beam.\
+Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figinputAndOutput"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 7}} shows one of the original pieces of music, and the scanned representation from C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  that has been put into a music editor. The system has successfully recognised all of the note-heads, beams, clefs, slurs, and time signature. The features that haven't been recognised are missing primarily because they are yet to be implemented, rather than because the system cannot be adapted to recognise them. The text has also been recognised by the OCR package, but was not passed to the music editor. The stress marks are not present because they are so far away from the note-heads. The upwards stems in the left-hand part are missing because the grammar does not yet have a definition for that construction. It is questionable whether it should be accepted anyway, as it would be represented more accurately by the kind of construction used to show two parts in the top line. Nevertheless, both the stress marks and upwards stems could be added to the grammar if it was considered desirable.\
+\
+\'a0\uc0\u8232 \'a0\u8232 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth10020\clftsWidth3 \clmart100 \clmarl100 \clmarb100 \clmarr100 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth9360\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (a)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth10020\clftsWidth3 \clmart100 \clmarl100 \clmarb100 \clmarr100 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth9820\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (b)\cell \lastrow\row
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 7:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  (a) Input to the C
+\fs20 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system, and (b) the output displayed in a music editor.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+The C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system is currently being extended to include more musical features. A potential problem is that as more features are added, the definition of existing features will have to be refined to ensure that features are distinguished from each other. Our experience so far is that this problem does not become serious.\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \'a05 Alternative music notations\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Most OMR systems are designed to read a subset Common Music Notation (CMN), in which notes are represented using oval heads on five-line staves. CMN is a rich language, and it is difficult to anticipate all of the symbols that might be encountered. C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  is easily extended to include new symbols and relationships by adding their description in the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  language, and defining their function in the DCG.\
+Although CMN is widely used, there are many other types of notation that are used either for different purposes, or in different cultures. As shown in Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figdifferentNotations"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 8}}, these use varying numbers of stave lines (including 0, 1, 4, and 6), and alternative symbols for note-heads (including squares, crosses, or even numbers or letters).\
+\
+\'a0\uc0\u8232 \'a0\u8232 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth9180\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl860 \trmarr860 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth7260\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (a)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth9180\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl1960 \trmarr1960 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth5060\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (b)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth9180\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trmarl620 \trmarr620 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth7740\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (d)\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt\clvertalbase \clshdrawnil \clwWidth9180\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrs\brdrw20\brdrcf3 \trbrdrl\brdrs\brdrw20\brdrcf3 \trbrdrb\brdrs\brdrw20\brdrcf3 \trbrdrr\brdrs\brdrw20\brdrcf3 
+\clvertalc \clshdrawnil \clwWidth8980\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf3 \clbrdrl\brdrs\brdrw20\brdrcf3 \clbrdrb\brdrs\brdrw20\brdrcf3 \clbrdrr\brdrs\brdrw20\brdrcf3 \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \pard\intbl\itap2\pardeftab720
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\qc
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 (c)\cell \lastrow\row
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Figure 8:
+\b0 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  Some alternative music notations (a) Square-note notation (b) Tablature (c) Percussion (d) Sol-fa.\cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system was designed to be adaptable so that such alternative forms could also be recognised. The stave removal phase automatically detects the number of lines in the input by searching for groups of regularly spaced lines. Furthermore, it does not assume that the spacing or the number of lines is the same for each group. The P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  language allows new shapes for objects to be defined by the user. For example, square-note notation was accommodated by primarily defining new shapes for note-heads. The DCG was modified to take into account the different constructs, such as the note-heads without stems, and the neumes (grouping of notes that correspond to one syllable of text).\
+A simple implementation of a square-note specification for music (as in Figure\'a0{\field{\*\fldinst{HYPERLINK "http://www.cs.waikato.ac.nz/~davidb/publications/acsc96/final.html#figdifferentNotations"}}{\fldrslt \cf4 \expnd0\expndtw0\kerning0
+\ul \ulc4 \outl0\strokewidth0 \strokec4 8}}a) for C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  required 201\'a0lines of P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  code, and 172\'a0lines of DCG code. Generating this code is considerably simpler than modifying a hard-coded recognition program, and allows users to add and modify new features as new pieces of music show up weaknesses. This kind of implementation and modification is only likely to be performed by technically inclined users, but a similar situation works successfully in systems such as Hypercard and the World Wide Web. In these cases, the application is intended for both users and authors, and the distinction is blurred as motivated users are able move towards authoring by making minor alterations to existing work. However, more sophisticated extensions, such as to a new notation or significantly different symbols in an existing one, would need to be carried out by someone with a higher level of technical competence.\
+In processing an example score that used square head notation, C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  correctly identified the 5 clefs and all 121 notes in the work. P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  failed to match one dot, and in another place classified a piece of dirt as a dot; consequently the duration for these notes were incorrect. All pitches were correct. The quality of print was lower than the CMN samples that were tested, so tolerances in the P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  description were more relaxed than for CMN. The processing of uncertain data in the system correctly disambiguated all cases where more than one P
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 RIMELA
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  description matched a particular part of the music.\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 6 Conclusion\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0  system has demonstrated that an extensible and adaptable OMR system can be implemented by breaking the task into the steps of stave recognition, primitive identification, assembly of primitives, and determining musical semantics. The system currently recognises a subset of CMN reasonably accurately, and our experience is that it is not difficult to extend the size of the subset that can be recognised. The system has also been adapted to read square-note notation, with high accuracy, and relatively little implementation effort.\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Acknowledgements\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The authors are grateful to Martin Setchel for helpful advice. This research was partially supported by University of Canterbury research grant number 2201768. The first author has carried out the work with the support of a Commonwealth scholarship at the University of Canterbury.\
+\
+\
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 References\
+\pard\pardeftab720\sa240
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 1
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+A.\'a0Arkadev and E.\'a0Braverman. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Teaching Computers to Recognize Patterns
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Academic Press, 1967.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 2
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+D.\'a0Bainbridge. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Preliminary experiments in musical score recognition
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . BEng. thesis, Department of Computer Science, University. of Edinburgh, The Kings Buildings, Mayfield Road, Edinburgh, UK, June 1991.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 3
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+H.\'a0Baird, H. S.\'a0Bunke and K.\'a0Yamamoto (editors). 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Structured Document Image Analysis
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Berlin Springer-Varlag, 1992.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 4
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+R.\'a0Boyle and R.\'a0Thomas. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Computer Vision: A First Course
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Artificial Inteligence Texts. Blackwell Scientific Publications, 1988.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 5
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+I.\'a0Bratko. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Prolog: Programming for Artificial Intelligence
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Addison-Wesley Publishing Company, 1990.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 6
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+N.\'a0P. Carter. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Automatic Recognition of Printed Music in the Context of Electronic Publishing
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . PhD. thesis, University of Surrey, February 1989.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 7
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+A.\'a0T. Clarke, B.\'a0M. Brown and M.\'a0P. Thorne. Inexpensive optical character recognition of music notation: A new alternative for publishers. In 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Proceedings of the Computers in Music Research Conference
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , page 84\'a0ff, Lancaster, UK, April 1988.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 8
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+B.\'a0Co\'fcasnon, P.\'a0Brisset and I.\'a0Stephan. Using logic programming languages for optical music recognition. In 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 The Third International Conference on the Practical Application of Prolog
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , pages 115-134, Paris, France, April 1995.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 9
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+B.\'a0Co\'fcasnon and J.\'a0Camillerapp. Using grammars to segment and recognize music scores. In 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 International Association for Pattern Recognition Workshop on Document Analysis Systems
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , pages 15-27, Kaiserslautern, Germany, October 1994.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 10
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+J.\'a0D. Foley, A.\'a0van Dam, S.\'a0K. Feiner and J.\'a0F. Hughes. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Computer Graphics: Principles and Practice
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 . Addison-Wesley Publishing Company, second edition edition, 1990.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 11
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+I.\'a0Fujinaga. Optical music recognition using projections. MSc. thesis, McGill University, Montreal, CA, 1988.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 12
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+I.\'a0Fujinaga. An optical music recognition system that learns. In (Ed)\'a0Jacek Maitan (editor), 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Enabling Technologies for High-Bandwidth Applications
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , pages 210-217, SPIE 1785, 1992.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\b \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 13
+\b0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+E.\'a0Selfridge-Field. Optical recognition of music notation: A survey of current work. 
+\i \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Computing in Musicology: An International Directory of Applications
+\i0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 , Volume\'a09, pages 109-145, 1994.\
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa298
+
+\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 Footnotes\
+\pard\pardeftab720
+
+\b0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ...C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANTOR
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+C
+\fs20 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 ANT
+\fs24 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 erbury Optical music Recognition\
+\pard\pardeftab720
+
+\f1 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\f0 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa120
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720\sa240
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \
+\pard\pardeftab720
+
+\i \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 David Bainbridge \
+Fri Sep 5 17:15:30 NZST 1997\
+}

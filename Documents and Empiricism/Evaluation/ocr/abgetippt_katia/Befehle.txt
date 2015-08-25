@@ -1,0 +1,103 @@
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0299.2.txt -ocr ubr16444_0299.txt -d zwischenordner
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0301.2.txt -ocr ubr16444_0301.txt -d zwischenordner
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0303.2.txt -ocr ubr16444_0303.txt -d zwischenordner
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0305.2.txt -ocr ubr16444_0305.txt -d zwischenordner
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0306.2.txt -ocr ubr16444_0306.txt -d zwischenordner
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0309.2.txt -ocr ubr16444_0309.txt -d zwischenordner
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0311.2.txt -ocr ubr16444_0311.txt -d zwischenordner
+
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0317.2.txt -ocr ubr16444_0317.txt -d zwischenordner
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0335.2.txt -ocr ubr16444_0335.txt -d zwischenordner
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0341.2.txt -ocr ubr16444_0341.txt -d zwischenordner
+
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0353.2.txt -ocr ubr16444_0353.txt -d zwischenordner
+
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0355.2.txt -ocr ubr16444_0355.txt -d zwischenordner
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0357.2.txt -ocr ubr16444_0357.txt -d zwischenordner
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0361.2.txt -ocr ubr16444_0361.txt -d zwischenordner
+
+
+
+
+
+
+
+
+java -cp ocrevalUAtion-1.3.0-jar-with-dependencies.jar eu.digitisation.Main -gt ubr16444_0365.2.txt -ocr ubr16444_0365.txt -d zwischenordner
+
+

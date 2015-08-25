@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)http://www.academia.edu/782397/Overview_of_Algorithms_and_Techniques_for_Optical_Music_Recognition -->
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" class="wf-loading"><head prefix="og: http://ogp.me/ns#
+                fb: http://ogp.me/ns/fb#
+                academia: http://ogp.me/ns/fb/academia#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/d6de116fa7"></script><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/nr-632.min.js"></script><script type="text/javascript" async="" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/ga.js"></script>
+    <meta charset="utf-8">
+    <title>Overview of Algorithms and Techniques for Optical Music Recognition | Wazir Zada Khan - Academia.edu</title>
+
+    <!--                 _                _                 _
+                        | |              (_)               | |
+      __ _  ___ __ _  __| | ___ _ __ ___  _  __ _   ___  __| |_   _
+     / _` |/ __/ _` |/ _` |/ _ \ '_ ` _ \| |/ _` | / _ \/ _` | | | |
+    | (_| | (_| (_| | (_| |  __/ | | | | | | (_| ||  __/ (_| | |_| |
+     \__,_|\___\__,_|\__,_|\___|_| |_| |_|_|\__,_(_)___|\__,_|\__,_|
+
+    We're hiring! See http://academia.edu/hiring -->
+
+    
+<script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/cb=gapi.loaded_0" async=""></script><script id="google-jssdk" async="" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/client.js" gapi_processed="true"></script><script id="facebook-jssdk" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/sdk.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"d6de116fa7","applicationID":"217711","transactionName":"cl5dFUEJW11QQE1GW19WXwRsEVhDXh0RXV1G","queueTime":38,"applicationTime":151,"agent":"js-agent.newrelic.com/nr-632.min.js"}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UgMPWEVRCQQHVVA="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:23,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:10,2:9,3:7,4:11,5:3,6:24,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){t("loader").features.ins=!0},{loader:"G9z0Bl"}],6:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3),n.on("fn-start",function(t){var e=t[0];e instanceof Event&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof Event&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:10,2:9,3:8,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],7:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:24,2:25,ee:"QJf3ax",gos:"7eSDFh"}],8:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState"],"-")},{1:25,2:24,ee:"QJf3ax"}],9:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:25,2:24,ee:"QJf3ax"}],10:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:25,2:24,ee:"QJf3ax"}],11:[function(t,e){function n(){f.inPlace(this,p,"fn-")}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:7,2:25,ee:"QJf3ax"}],12:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:13,3:11,4:7,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],13:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],14:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:23,2:24,handle:"D5DuLP"}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=(t(2),window),f=c.document,u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:23,2:14,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],23:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],24:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],25:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:24,ee:"QJf3ax"}]},{},["G9z0Bl",4,12,6,5]);</script>
+
+    <script>$request_id = (document.cookie.match('(^|; )request_id=([^;]*)')||0)[2]</script>
+    <link href="http://a.academia-assets.com/images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="http://a.academia-assets.com/images/favicon-production.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" %="">
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(
+            ['_setAccount', 'UA-2111171-1'],
+            ['_setDomainName', 'academia.edu'],
+            ['_setCustomVar', 1, 'Controller', "single_work", 3],
+            ['_setCustomVar', 2, 'Action', "show", 3],
+            ['_setCustomVar', 5, 'edge', 'unknown', 2]
+        );
+    </script>
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="Xh/9P+yQu2IEH1llnUNYAZxc92CZbk2rN0NQnYdIrrdhDdHBrizic3KXeotIF5o/U/d0dQcMZrKXL5j6rmqJEg==">
+
+    
+  <meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="http://www.academia.edu/782397/Overview_of_Algorithms_and_Techniques_for_Optical_Music_Recognition">
+<meta name="twitter:title" content="Overview of Algorithms and Techniques for Optical Music Recognition">
+<meta name="twitter:description" content="The systems for music score recognition are traditionally called OMR. In this paper we have presented an overview of different techniques and algorithms which can be used at various steps of music symbol recognition. In the very first, we have given">
+<meta name="twitter:image" content="https://0.academia-photos.com/528328/187392/1409971/s200_wazir_zada.khan.jpg">
+<meta property="fb:app_id" content="2369844204">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://www.academia.edu/782397/Overview_of_Algorithms_and_Techniques_for_Optical_Music_Recognition">
+<meta property="og:title" content="Overview of Algorithms and Techniques for Optical Music Recognition">
+<meta property="og:image" content="http://a.academia-assets.com/images/open-graph-icons/fb-paper.gif">
+<meta property="og:description" content="The systems for music score recognition are traditionally called OMR. In this paper we have presented an overview of different techniques and algorithms which can be used at various steps of music symbol recognition. In the very first, we have given">
+<meta property="article:author" content="http://independent.academia.edu/WazirZadaKhan">
+<meta name="description" content="By Wazir Zada Khan. The systems for music score recognition are traditionally called OMR. In this paper we have presented an overview of different techniques and algorithms which can be used at various steps of music symbol recognition. In the very">
+<meta name="google-site-verification" content="bKJMBZA7E43xhDOopFZkssMMkBRjvYERV-NaN4R6mrs">
+<meta http-equiv="Set-Cookie" content="single_request_tracker=; domain=academia.edu; path=/; expires=Thu, 01-Jan-1970 00:00:00 UTC">
+
+  <script>
+
+      document.domain = 'academia.edu';
+      var $no_document_domain = false;
+    var $rails_env  = 'production';
+    var $app_rev    = '6da8dfc8b14897f02dcdd0240b0e7d75336408b7';
+    var $domain     = 'academia.edu';
+    var $app_host   = "academia.edu";
+    var $asset_host = "academia-assets.com";
+    var $start_time = new Date().getTime();
+
+
+    if (("undefined" != typeof XMLHttpRequest) && 'withCredentials' in new XMLHttpRequest()) {
+      var $login_protocol = "https";
+    } else {
+      var $login_protocol = window.location.protocol.replace(':', '');
+    }
+  </script>
+  <script>
+window.AcademiaRequire = { };
+
+window.AcademiaRequire.assetManifest = {"files":{"admin-c9a2b32be3626585dfbd85b00ce20ef6.js":{"logical_path":"admin.js","mtime":"2015-04-21T15:37:56-07:00","size":4073,"digest":"c9a2b32be3626585dfbd85b00ce20ef6"},"admin_actions-424b86945501d257d47020f51adab1d1.js":{"logical_path":"admin_actions.js","mtime":"2015-04-23T15:39:39-07:00","size":4306,"digest":"424b86945501d257d47020f51adab1d1"},"affiliation-80f0a2530c424c1dca5cf49ccdb47f93.js":{"logical_path":"affiliation.js","mtime":"2015-05-02T17:38:18-07:00","size":20041,"digest":"80f0a2530c424c1dca5cf49ccdb47f93"},"affiliation_editor-c145277c8f6dd9be901f8b58e50c04c7.js":{"logical_path":"affiliation_editor.js","mtime":"2015-05-11T12:31:23-07:00","size":71405,"digest":"c145277c8f6dd9be901f8b58e50c04c7"},"affix-d43a13f74bedd5b5a807539926685a33.js":{"logical_path":"affix.js","mtime":"2015-04-21T15:37:56-07:00","size":2120,"digest":"d43a13f74bedd5b5a807539926685a33"},"analytics_dashboard-122ea6f2e5b81f58214c765e69f6d816.js":{"logical_path":"analytics_dashboard.js","mtime":"2015-04-21T18:15:49-07:00","size":636498,"digest":"122ea6f2e5b81f58214c765e69f6d816"},"application-51f0784011c2a6115139d1b6edad3fd7.js":{"logical_path":"application.js","mtime":"2015-05-11T13:42:02-07:00","size":454100,"digest":"51f0784011c2a6115139d1b6edad3fd7"},"bookmarks_list-dc32c4351e5d1c790441b537533020d8.js":{"logical_path":"bookmarks_list.js","mtime":"2015-04-21T15:37:56-07:00","size":727,"digest":"dc32c4351e5d1c790441b537533020d8"},"collapse-2e098255553498be07e26332b23da1d2.js":{"logical_path":"collapse.js","mtime":"2015-04-21T15:37:56-07:00","size":3457,"digest":"2e098255553498be07e26332b23da1d2"},"discussion_creator-d1c7e5042ca0f76b97e2ffc432df131a.js":{"logical_path":"discussion_creator.js","mtime":"2015-04-21T18:15:49-07:00","size":14993,"digest":"d1c7e5042ca0f76b97e2ffc432df131a"},"discussion_creator_loader-6681dcefa8d5f37bbce2a7f06f46a7b7.js":{"logical_path":"discussion_creator_loader.js","mtime":"2015-05-11T13:41:56-07:00","size":364,"digest":"6681dcefa8d5f37bbce2a7f06f46a7b7"},"discussions-c70d9662b016c3efc70782388084cb0f.js":{"logical_path":"discussions.js","mtime":"2015-04-30T18:00:37-07:00","size":65485,"digest":"c70d9662b016c3efc70782388084cb0f"},"enter_email_form_controller-94484d2874074865487c6fea8f545e2c.js":{"logical_path":"enter_email_form_controller.js","mtime":"2015-04-21T15:37:56-07:00","size":3795,"digest":"94484d2874074865487c6fea8f545e2c"},"facebook_auto_follow-0ffbe641ff0d422552a126d1a6f2bd38.js":{"logical_path":"facebook_auto_follow.js","mtime":"2015-05-11T13:41:56-07:00","size":2714,"digest":"0ffbe641ff0d422552a126d1a6f2bd38"},"facebook_contacts-76e63a0451c19dc0f6fe9738572d6ad6.js":{"logical_path":"facebook_contacts.js","mtime":"2015-04-21T15:37:56-07:00","size":1879,"digest":"76e63a0451c19dc0f6fe9738572d6ad6"},"facebook_friend_finder_modal-6fe402e7b972a227b2d041a93e2e32fd.js":{"logical_path":"facebook_friend_finder_modal.js","mtime":"2015-04-21T15:37:56-07:00","size":370,"digest":"6fe402e7b972a227b2d041a93e2e32fd"},"follow_facepile-87e96ff390f281f5b858e53a5696f934.js":{"logical_path":"follow_facepile.js","mtime":"2015-04-21T15:37:56-07:00","size":2928,"digest":"87e96ff390f281f5b858e53a5696f934"},"invitation-6e0773db0b244344ab17305ad9046978.js":{"logical_path":"invitation.js","mtime":"2015-04-21T15:37:56-07:00","size":1333,"digest":"6e0773db0b244344ab17305ad9046978"},"invoices-f4f5eb1a72ee65ba5154e5e9b9107cb5.js":{"logical_path":"invoices.js","mtime":"2015-04-21T18:15:49-07:00","size":4162,"digest":"f4f5eb1a72ee65ba5154e5e9b9107cb5"},"job_coupon_invite-5691db0cf8525102ba28f41e1cf5c6dc.js":{"logical_path":"job_coupon_invite.js","mtime":"2015-04-21T15:37:56-07:00","size":940,"digest":"5691db0cf8525102ba28f41e1cf5c6dc"},"job_stats-78248988104dd6e7958cf96f62d895b0.js":{"logical_path":"job_stats.js","mtime":"2015-04-21T15:37:56-07:00","size":554,"digest":"78248988104dd6e7958cf96f62d895b0"},"jobs-21645a96eb7657aa7348b5570e45df19.js":{"logical_path":"jobs.js","mtime":"2015-04-21T18:15:49-07:00","size":123961,"digest":"21645a96eb7657aa7348b5570e45df19"},"jquery.dataTables-836e5d816621e65db48d8b496b84c8a9.js":{"logical_path":"jquery.dataTables.js","mtime":"2015-04-21T15:37:56-07:00","size":79712,"digest":"836e5d816621e65db48d8b496b84c8a9"},"jquery.fileupload-a0fadcf8a0398518261e49ab28d2e21a.js":{"logical_path":"jquery.fileupload.js","mtime":"2015-05-05T14:39:27-07:00","size":24336,"digest":"a0fadcf8a0398518261e49ab28d2e21a"},"jquery.placeholder-818cfaaa425ddf9e5b47b1559a7aa77a.js":{"logical_path":"jquery.placeholder.js","mtime":"2015-04-21T15:37:56-07:00","size":2512,"digest":"818cfaaa425ddf9e5b47b1559a7aa77a"},"linkify-e08a9d9f52c3866b23b031dd2da18b63.js":{"logical_path":"linkify.js","mtime":"2015-04-21T15:37:56-07:00","size":2499,"digest":"e08a9d9f52c3866b23b031dd2da18b63"},"local_storage-c210d16b70119780c45a2a134df13f68.js":{"logical_path":"local_storage.js","mtime":"2015-04-21T15:37:56-07:00","size":580,"digest":"c210d16b70119780c45a2a134df13f68"},"masonry-67130d533d5a90d190dc82f326f78f6e.js":{"logical_path":"masonry.js","mtime":"2015-04-21T15:37:56-07:00","size":5268,"digest":"67130d533d5a90d190dc82f326f78f6e"},"mini_registration-4fd7c5cb96c80ca95f178c18d1e4e130.js":{"logical_path":"mini_registration.js","mtime":"2015-04-21T15:37:56-07:00","size":1101,"digest":"4fd7c5cb96c80ca95f178c18d1e4e130"},"moderation_requests-77cf8692e58027c418352b19ad77ab21.js":{"logical_path":"moderation_requests.js","mtime":"2015-05-11T13:41:56-07:00","size":1742,"digest":"77cf8692e58027c418352b19ad77ab21"},"new_profile-f6fefe937b434807ad22e5e5e081ae4d.js":{"logical_path":"new_profile.js","mtime":"2015-05-05T14:39:27-07:00","size":66832,"digest":"f6fefe937b434807ad22e5e5e081ae4d"},"new_profile_about_box-f94ca363071b41e3e1db25d2116d9582.js":{"logical_path":"new_profile_about_box.js","mtime":"2015-05-01T14:05:46-07:00","size":19178,"digest":"f94ca363071b41e3e1db25d2116d9582"},"news-5781701c4c32160984333535ed58e04f.js":{"logical_path":"news.js","mtime":"2015-05-11T11:03:14-07:00","size":104151,"digest":"5781701c4c32160984333535ed58e04f"},"panel-b14328a2ed82b23a676ecb0fc9ace183.js":{"logical_path":"panel.js","mtime":"2015-04-21T15:37:56-07:00","size":1288,"digest":"b14328a2ed82b23a676ecb0fc9ace183"},"payment_coupons-f30a9876ac7acac80b5381608ec4c18d.js":{"logical_path":"payment_coupons.js","mtime":"2015-04-21T15:37:56-07:00","size":3399,"digest":"f30a9876ac7acac80b5381608ec4c18d"},"preferences-dd5725efe5168ce4307e0ae494e0dcc9.js":{"logical_path":"preferences.js","mtime":"2015-05-03T11:54:24-07:00","size":2523,"digest":"dd5725efe5168ce4307e0ae494e0dcc9"},"profile_view_counts-4ecbb307f4a085391824d23376cf2a22.js":{"logical_path":"profile_view_counts.js","mtime":"2015-04-21T15:37:56-07:00","size":1140,"digest":"4ecbb307f4a085391824d23376cf2a22"},"recent_activity-f49e5eb495dc38be695182872e8454f3.js":{"logical_path":"recent_activity.js","mtime":"2015-04-21T15:37:56-07:00","size":2202,"digest":"f49e5eb495dc38be695182872e8454f3"},"reg_path-c07724d456d6a6a71daf9df2c386af7a.js":{"logical_path":"reg_path.js","mtime":"2015-05-11T13:41:56-07:00","size":60584,"digest":"c07724d456d6a6a71daf9df2c386af7a"},"registration_uploader-8ea3d97791d9b18a3f5b3a05d8a229bd.js":{"logical_path":"registration_uploader.js","mtime":"2015-05-01T15:42:53-07:00","size":14520,"digest":"8ea3d97791d9b18a3f5b3a05d8a229bd"},"repo-4224ee2186e480da38d5041c620e6b7e.js":{"logical_path":"repo.js","mtime":"2015-04-21T15:37:56-07:00","size":25745,"digest":"4224ee2186e480da38d5041c620e6b7e"},"reports_controller-ae696e0a1366b6b9aefc3898dcec2de4.js":{"logical_path":"reports_controller.js","mtime":"2015-04-21T18:15:49-07:00","size":1200,"digest":"ae696e0a1366b6b9aefc3898dcec2de4"},"request_upload-2e73b75178e525e0f445e670a00d94fe.js":{"logical_path":"request_upload.js","mtime":"2015-04-21T18:15:49-07:00","size":3278,"digest":"2e73b75178e525e0f445e670a00d94fe"},"scrollspy-0694365c0ca31006b679237efb12d7c1.js":{"logical_path":"scrollspy.js","mtime":"2015-04-21T15:37:56-07:00","size":2363,"digest":"0694365c0ca31006b679237efb12d7c1"},"search-fd5932e6f4133826dec1680ffe5c887a.js":{"logical_path":"search.js","mtime":"2015-05-11T12:42:19-07:00","size":60618,"digest":"fd5932e6f4133826dec1680ffe5c887a"},"select2-ee87637aa54dcb6f33d12853ea3e025e.js":{"logical_path":"select2.js","mtime":"2015-05-11T11:03:14-07:00","size":47516,"digest":"ee87637aa54dcb6f33d12853ea3e025e"},"session_modal-0e85e86475006fdf269091bd6a68cc35.js":{"logical_path":"session_modal.js","mtime":"2015-04-27T15:07:15-07:00","size":5370,"digest":"0e85e86475006fdf269091bd6a68cc35"},"single_work-ae22ec0c222ed50f9fd260ce53c8b9b8.js":{"logical_path":"single_work.js","mtime":"2015-05-01T15:47:07-07:00","size":26216,"digest":"ae22ec0c222ed50f9fd260ce53c8b9b8"},"social-61df8606b9d1c52e5185a067a705ea05.js":{"logical_path":"social.js","mtime":"2015-04-21T15:37:56-07:00","size":609,"digest":"61df8606b9d1c52e5185a067a705ea05"},"standalone_research_interests-8e8ce57c24a498bfd89e1ad67e48cf96.js":{"logical_path":"standalone_research_interests.js","mtime":"2015-04-21T15:37:56-07:00","size":1706,"digest":"8e8ce57c24a498bfd89e1ad67e48cf96"},"tab-d06690b0d21ffb1918ee4fde10d897c5.js":{"logical_path":"tab.js","mtime":"2015-04-21T15:37:56-07:00","size":1369,"digest":"d06690b0d21ffb1918ee4fde10d897c5"},"tags-feb4cb93c9618d3827737cd5d7a0bc3e.js":{"logical_path":"tags.js","mtime":"2015-04-21T15:37:56-07:00","size":10672,"digest":"feb4cb93c9618d3827737cd5d7a0bc3e"},"twitter_auto_follow-f8a9c24a53dbe783010069bd5904117f.js":{"logical_path":"twitter_auto_follow.js","mtime":"2015-04-21T18:15:49-07:00","size":4347,"digest":"f8a9c24a53dbe783010069bd5904117f"},"work_creator-3fb0b118596a13ed27b463114fddb914.js":{"logical_path":"work_creator.js","mtime":"2015-05-11T13:41:56-07:00","size":119822,"digest":"3fb0b118596a13ed27b463114fddb914"},"works-b93ae23a657009c1a943bba234f00fa7.js":{"logical_path":"works.js","mtime":"2015-05-05T14:39:27-07:00","size":118295,"digest":"b93ae23a657009c1a943bba234f00fa7"},"wow_profile-547f6237867bff81c2844f96433bb715.js":{"logical_path":"wow_profile.js","mtime":"2015-04-21T15:37:56-07:00","size":10163,"digest":"547f6237867bff81c2844f96433bb715"},"wow_profile_edit-653d8eb4d61d2de27eea20ba4753597f.js":{"logical_path":"wow_profile_edit.js","mtime":"2015-05-11T11:03:14-07:00","size":87858,"digest":"653d8eb4d61d2de27eea20ba4753597f"},"academia_buttons-5d1848b4ee1bf1587c54570752bd092e.css":{"logical_path":"academia_buttons.css","mtime":"2015-04-21T15:37:56-07:00","size":454,"digest":"5d1848b4ee1bf1587c54570752bd092e"},"admin_content-08a81e471bdfbf0583beedb9ef6ada6a.css":{"logical_path":"admin_content.css","mtime":"2015-04-21T18:15:49-07:00","size":23905,"digest":"08a81e471bdfbf0583beedb9ef6ada6a"},"analytics_dashboard-e69b1ec80d5d37f970cab1339b780017.css":{"logical_path":"analytics_dashboard.css","mtime":"2015-04-21T15:37:56-07:00","size":19090,"digest":"e69b1ec80d5d37f970cab1339b780017"},"application-56e838aa668be44a9d24c7f7c9a358d9.css":{"logical_path":"application.css","mtime":"2015-05-11T13:41:56-07:00","size":277138,"digest":"56e838aa668be44a9d24c7f7c9a358d9"},"application_base_v2-a9e5c553bb36d85e7bf5e899dc3ec363.css":{"logical_path":"application_base_v2.css","mtime":"2015-05-11T13:41:56-07:00","size":276332,"digest":"a9e5c553bb36d85e7bf5e899dc3ec363"},"application_logged_in_v2-7ec7ba914418bbd123fb55a89d49aa05.css":{"logical_path":"application_logged_in_v2.css","mtime":"2015-05-11T11:03:14-07:00","size":9129,"digest":"7ec7ba914418bbd123fb55a89d49aa05"},"base-a36ae9281d069effd8a8e3093fd6fe77.css":{"logical_path":"base.css","mtime":"2015-05-11T13:41:56-07:00","size":113395,"digest":"a36ae9281d069effd8a8e3093fd6fe77"},"documents-c2d50deb45c8f3d4bd34d6baf4f10d45.css":{"logical_path":"documents.css","mtime":"2015-05-10T12:52:36-07:00","size":11019,"digest":"c2d50deb45c8f3d4bd34d6baf4f10d45"},"email_preview-51a089a1f1da67fbaa5d685568dee67e.css":{"logical_path":"email_preview.css","mtime":"2015-04-21T15:37:56-07:00","size":19407,"digest":"51a089a1f1da67fbaa5d685568dee67e"},"jobs-277a25c28be483db01bb59fc23e43b18.css":{"logical_path":"jobs.css","mtime":"2015-04-24T14:35:45-07:00","size":19542,"digest":"277a25c28be483db01bb59fc23e43b18"},"mailer-83628482bf1339fc24cccb4d1e6ba4cc.css":{"logical_path":"mailer.css","mtime":"2015-04-21T18:15:49-07:00","size":4961,"digest":"83628482bf1339fc24cccb4d1e6ba4cc"},"new_mailer-fff2b1588205f1b708fad0427cc1b984.css":{"logical_path":"new_mailer.css","mtime":"2015-05-07T14:22:46-07:00","size":4851,"digest":"fff2b1588205f1b708fad0427cc1b984"},"no_layout-3d98a7836ae37c70f3be097770134c3e.css":{"logical_path":"no_layout.css","mtime":"2015-04-21T15:37:56-07:00","size":87,"digest":"3d98a7836ae37c70f3be097770134c3e"},"reports-51a089a1f1da67fbaa5d685568dee67e.css":{"logical_path":"reports.css","mtime":"2015-04-21T15:37:56-07:00","size":19407,"digest":"51a089a1f1da67fbaa5d685568dee67e"},"stories-0479ead53de83dd52621f5498d6c6cf5.css":{"logical_path":"stories.css","mtime":"2015-04-21T15:37:56-07:00","size":2787,"digest":"0479ead53de83dd52621f5498d6c6cf5"},"user_admin-9dc087e3f608510e9edb71118e4cee37.css":{"logical_path":"user_admin.css","mtime":"2015-04-21T15:37:56-07:00","size":519,"digest":"9dc087e3f608510e9edb71118e4cee37"},"wow-d7844684da16d41e8466f239874d1416.css":{"logical_path":"wow.css","mtime":"2015-05-06T10:57:15-07:00","size":51778,"digest":"d7844684da16d41e8466f239874d1416"},"zurb_ink-da36083f55b8a682bac273039dbed301.css":{"logical_path":"zurb_ink.css","mtime":"2015-04-21T15:37:56-07:00","size":11092,"digest":"da36083f55b8a682bac273039dbed301"},"trunk8\/trunk8.jquery-36bd03b1fed0a6d1c47c2d224d7609ac.json":{"logical_path":"trunk8\/trunk8.jquery.json","mtime":"2015-02-06T14:46:47-08:00","size":815,"digest":"36bd03b1fed0a6d1c47c2d224d7609ac"},"trunk8\/demo-0672941a6f187a97bca8cf6d057b0db4.html":{"logical_path":"trunk8\/demo.html","mtime":"2015-02-06T14:46:47-08:00","size":4302,"digest":"0672941a6f187a97bca8cf6d057b0db4"},"jquery-ui-42f7987825a749226307b46e341bc0c9.js":{"logical_path":"jquery-ui.js","mtime":"2014-08-12T12:08:11-07:00","size":235740,"digest":"42f7987825a749226307b46e341bc0c9"},"bootstrap\/glyphicons-halflings-regular-9aec3eefc564659c8df5aed47487667b.eot":{"logical_path":"bootstrap\/glyphicons-halflings-regular.eot","mtime":"2014-08-12T12:08:06-07:00","size":20335,"digest":"9aec3eefc564659c8df5aed47487667b"},"bootstrap\/glyphicons-halflings-regular-46e608d306641e6954bea7c3135a2af5.svg":{"logical_path":"bootstrap\/glyphicons-halflings-regular.svg","mtime":"2014-08-12T12:08:06-07:00","size":62927,"digest":"46e608d306641e6954bea7c3135a2af5"},"bootstrap\/glyphicons-halflings-regular-a9b6846d87d4eef2c99d93a994f902c1.ttf":{"logical_path":"bootstrap\/glyphicons-halflings-regular.ttf","mtime":"2014-08-12T12:08:06-07:00","size":41280,"digest":"a9b6846d87d4eef2c99d93a994f902c1"},"bootstrap\/glyphicons-halflings-regular-92f56be5d1c7759a7a39b38eae27615f.woff":{"logical_path":"bootstrap\/glyphicons-halflings-regular.woff","mtime":"2014-08-12T12:08:06-07:00","size":23320,"digest":"92f56be5d1c7759a7a39b38eae27615f"}},"assets":{"admin.js":"admin-c9a2b32be3626585dfbd85b00ce20ef6.js","admin_actions.js":"admin_actions-424b86945501d257d47020f51adab1d1.js","affiliation.js":"affiliation-80f0a2530c424c1dca5cf49ccdb47f93.js","affiliation_editor.js":"affiliation_editor-c145277c8f6dd9be901f8b58e50c04c7.js","affix.js":"affix-d43a13f74bedd5b5a807539926685a33.js","analytics_dashboard.js":"analytics_dashboard-122ea6f2e5b81f58214c765e69f6d816.js","application.js":"application-51f0784011c2a6115139d1b6edad3fd7.js","bookmarks_list.js":"bookmarks_list-dc32c4351e5d1c790441b537533020d8.js","collapse.js":"collapse-2e098255553498be07e26332b23da1d2.js","discussion_creator.js":"discussion_creator-d1c7e5042ca0f76b97e2ffc432df131a.js","discussion_creator_loader.js":"discussion_creator_loader-6681dcefa8d5f37bbce2a7f06f46a7b7.js","discussions.js":"discussions-c70d9662b016c3efc70782388084cb0f.js","enter_email_form_controller.js":"enter_email_form_controller-94484d2874074865487c6fea8f545e2c.js","facebook_auto_follow.js":"facebook_auto_follow-0ffbe641ff0d422552a126d1a6f2bd38.js","facebook_contacts.js":"facebook_contacts-76e63a0451c19dc0f6fe9738572d6ad6.js","facebook_friend_finder_modal.js":"facebook_friend_finder_modal-6fe402e7b972a227b2d041a93e2e32fd.js","follow_facepile.js":"follow_facepile-87e96ff390f281f5b858e53a5696f934.js","invitation.js":"invitation-6e0773db0b244344ab17305ad9046978.js","invoices.js":"invoices-f4f5eb1a72ee65ba5154e5e9b9107cb5.js","job_coupon_invite.js":"job_coupon_invite-5691db0cf8525102ba28f41e1cf5c6dc.js","job_stats.js":"job_stats-78248988104dd6e7958cf96f62d895b0.js","jobs.js":"jobs-21645a96eb7657aa7348b5570e45df19.js","jquery.dataTables.js":"jquery.dataTables-836e5d816621e65db48d8b496b84c8a9.js","jquery.fileupload.js":"jquery.fileupload-a0fadcf8a0398518261e49ab28d2e21a.js","jquery.placeholder.js":"jquery.placeholder-818cfaaa425ddf9e5b47b1559a7aa77a.js","linkify.js":"linkify-e08a9d9f52c3866b23b031dd2da18b63.js","local_storage.js":"local_storage-c210d16b70119780c45a2a134df13f68.js","masonry.js":"masonry-67130d533d5a90d190dc82f326f78f6e.js","mini_registration.js":"mini_registration-4fd7c5cb96c80ca95f178c18d1e4e130.js","moderation_requests.js":"moderation_requests-77cf8692e58027c418352b19ad77ab21.js","new_profile.js":"new_profile-f6fefe937b434807ad22e5e5e081ae4d.js","new_profile_about_box.js":"new_profile_about_box-f94ca363071b41e3e1db25d2116d9582.js","news.js":"news-5781701c4c32160984333535ed58e04f.js","panel.js":"panel-b14328a2ed82b23a676ecb0fc9ace183.js","payment_coupons.js":"payment_coupons-f30a9876ac7acac80b5381608ec4c18d.js","preferences.js":"preferences-dd5725efe5168ce4307e0ae494e0dcc9.js","profile_view_counts.js":"profile_view_counts-4ecbb307f4a085391824d23376cf2a22.js","recent_activity.js":"recent_activity-f49e5eb495dc38be695182872e8454f3.js","reg_path.js":"reg_path-c07724d456d6a6a71daf9df2c386af7a.js","registration_uploader.js":"registration_uploader-8ea3d97791d9b18a3f5b3a05d8a229bd.js","repo.js":"repo-4224ee2186e480da38d5041c620e6b7e.js","reports_controller.js":"reports_controller-ae696e0a1366b6b9aefc3898dcec2de4.js","request_upload.js":"request_upload-2e73b75178e525e0f445e670a00d94fe.js","scrollspy.js":"scrollspy-0694365c0ca31006b679237efb12d7c1.js","search.js":"search-fd5932e6f4133826dec1680ffe5c887a.js","select2.js":"select2-ee87637aa54dcb6f33d12853ea3e025e.js","session_modal.js":"session_modal-0e85e86475006fdf269091bd6a68cc35.js","single_work.js":"single_work-ae22ec0c222ed50f9fd260ce53c8b9b8.js","social.js":"social-61df8606b9d1c52e5185a067a705ea05.js","standalone_research_interests.js":"standalone_research_interests-8e8ce57c24a498bfd89e1ad67e48cf96.js","tab.js":"tab-d06690b0d21ffb1918ee4fde10d897c5.js","tags.js":"tags-feb4cb93c9618d3827737cd5d7a0bc3e.js","twitter_auto_follow.js":"twitter_auto_follow-f8a9c24a53dbe783010069bd5904117f.js","work_creator.js":"work_creator-3fb0b118596a13ed27b463114fddb914.js","works.js":"works-b93ae23a657009c1a943bba234f00fa7.js","wow_profile.js":"wow_profile-547f6237867bff81c2844f96433bb715.js","wow_profile_edit.js":"wow_profile_edit-653d8eb4d61d2de27eea20ba4753597f.js","academia_buttons.css":"academia_buttons-5d1848b4ee1bf1587c54570752bd092e.css","admin_content.css":"admin_content-08a81e471bdfbf0583beedb9ef6ada6a.css","analytics_dashboard.css":"analytics_dashboard-e69b1ec80d5d37f970cab1339b780017.css","application.css":"application-56e838aa668be44a9d24c7f7c9a358d9.css","application_base_v2.css":"application_base_v2-a9e5c553bb36d85e7bf5e899dc3ec363.css","application_logged_in_v2.css":"application_logged_in_v2-7ec7ba914418bbd123fb55a89d49aa05.css","base.css":"base-a36ae9281d069effd8a8e3093fd6fe77.css","documents.css":"documents-c2d50deb45c8f3d4bd34d6baf4f10d45.css","email_preview.css":"email_preview-51a089a1f1da67fbaa5d685568dee67e.css","jobs.css":"jobs-277a25c28be483db01bb59fc23e43b18.css","mailer.css":"mailer-83628482bf1339fc24cccb4d1e6ba4cc.css","new_mailer.css":"new_mailer-fff2b1588205f1b708fad0427cc1b984.css","no_layout.css":"no_layout-3d98a7836ae37c70f3be097770134c3e.css","reports.css":"reports-51a089a1f1da67fbaa5d685568dee67e.css","stories.css":"stories-0479ead53de83dd52621f5498d6c6cf5.css","user_admin.css":"user_admin-9dc087e3f608510e9edb71118e4cee37.css","wow.css":"wow-d7844684da16d41e8466f239874d1416.css","zurb_ink.css":"zurb_ink-da36083f55b8a682bac273039dbed301.css","trunk8\/trunk8.jquery.json":"trunk8\/trunk8.jquery-36bd03b1fed0a6d1c47c2d224d7609ac.json","trunk8\/demo.html":"trunk8\/demo-0672941a6f187a97bca8cf6d057b0db4.html","jquery-ui.js":"jquery-ui-42f7987825a749226307b46e341bc0c9.js","bootstrap\/glyphicons-halflings-regular.eot":"bootstrap\/glyphicons-halflings-regular-9aec3eefc564659c8df5aed47487667b.eot","bootstrap\/glyphicons-halflings-regular.svg":"bootstrap\/glyphicons-halflings-regular-46e608d306641e6954bea7c3135a2af5.svg","bootstrap\/glyphicons-halflings-regular.ttf":"bootstrap\/glyphicons-halflings-regular-a9b6846d87d4eef2c99d93a994f902c1.ttf","bootstrap\/glyphicons-halflings-regular.woff":"bootstrap\/glyphicons-halflings-regular-92f56be5d1c7759a7a39b38eae27615f.woff"}};
+
+window.AcademiaRequire.reqIgnoredScripts = [];
+</script>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,700">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="http://a.academia-assets.com/assets/application_base_v2-a9e5c553bb36d85e7bf5e899dc3ec363.css">
+  <script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/application-51f0784011c2a6115139d1b6edad3fd7.js"></script><style type="text/css"></style>
+
+    <script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/raven.min.js"></script>
+
+    <script>
+      if ("undefined" != typeof Raven) {
+        Raven.config('https://530c6d33a0de4ebfb124b47975ef405c@app.getsentry.com/27953', {
+          whitelistUrls: ['academia.edu','academia-assets.com'],
+          shouldSendCallback: function(data) {
+            // only send 0.01% of errors
+            // var sampleRate = 0.01;
+            // return (Math.random() * 100 <= sampleRate);
+            return false;
+          }
+        }).install();
+
+        if (("undefined" != typeof $current_user) && $current_user.id) {
+          Raven.setUser({ id: $current_user.id });
+        }
+      }
+    </script>
+  <script>
+    _gaq.push(['_setCustomVar', 3, 'logged_in', "" + ("undefined" != typeof $current_user), 2]);
+    window.Sizzle = $.find;
+
+    jade.split = window.Academia.Split;
+    jade.helpers = window.$h;
+  </script>
+
+  
+
+
+    <script type="text/javascript">(function() {
+  var __slice = [].slice;
+
+  window.heap = {
+    track: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return $a.log("heap.track is being called without heap loaded on the page", args);
+    },
+    identify: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return $a.log("heap.identify is being called without heap loaded on the page", args);
+    },
+    clearEventProperties: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return $a.log("heap.identify is being called without heap loaded on the page", args);
+    },
+    setEventProperties: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return $a.log("heap.identify is being called without heap loaded on the page", args);
+    },
+    unsetEventProperty: function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return $a.log("heap.identify is being called without heap loaded on the page", args);
+    }
+  };
+
+}).call(this);
+</script>
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//a.academia-assets.com/assets/single_work-ae22ec0c222ed50f9fd260ce53c8b9b8.js" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/single_work-ae22ec0c222ed50f9fd260ce53c8b9b8.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//a.academia-assets.com/assets/affix-d43a13f74bedd5b5a807539926685a33.js" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/affix-d43a13f74bedd5b5a807539926685a33.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//a.academia-assets.com/assets/collapse-2e098255553498be07e26332b23da1d2.js" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/collapse-2e098255553498be07e26332b23da1d2.js"></script><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/easyXDM.js" id="easyXDM"></script><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/seamless"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="//a.academia-assets.com/assets/session_modal-0e85e86475006fdf269091bd6a68cc35.js" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/session_modal-0e85e86475006fdf269091bd6a68cc35.js"></script><style></style><link rel="stylesheet" type="text/css" href="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4gen.css"><link rel="stylesheet" type="text/css" href="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4gen_non_ie.css"><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4gen.js"></script><script>
+  var defaultViewWidth = defaultViewWidth || 679.0;
+
+  var docManager = new DocumentManager("scroll", "web" == "mobile"); // Our global manager for this view page
+  window.docManager = docManager;
+  docManager.setEmbeddedDoc('True');
+  docManager.fontAggregatorHosts = ["https://html1-f.scribdassets.com", "https://html2-f.scribdassets.com"];
+  docManager.assetPrefix = "25ix9pp22o1246qr";
+  docManager.addFont(1, "b", "ff1", "Times New Roman, Times, serif", "bold", "normal");
+  docManager.addFont(0, "", "ff0", "Arial, Arial, Helvetica, sans-serif", "normal", "normal");
+  docManager.addFont(3, "", "ff3", "Times New Roman, Times, serif", "normal", "normal");
+  docManager.addFont(2, "", "ff2", "Arial, Arial, Helvetica, sans-serif", "normal", "normal");
+  docManager.addFont(5, "", "ff5", "Times New Roman, Times, serif", "normal", "normal");
+  docManager.addFont(4, "", "ff4", "Arial, Arial, Helvetica, sans-serif", "normal", "normal");
+  docManager.addFont(7, "", "ff7", "Times New Roman, Times, serif", "normal", "normal");
+  docManager.addFont(6, "", "ff6", "Arial, Arial, Helvetica, sans-serif", "normal", "normal");
+  docManager.displayType = "vector";
+  docManager.initStyles();
+  docManager.setPageWidths(defaultViewWidth);
+  docManager.setImageDomainSubstitution(/http:\/\/html.scribd.com/, ["https://html1-f.scribdassets.com", "https://html2-f.scribdassets.com"]);
+</script><style>#scribd_embedded_doc div.ff0 span {font-family: ff0, Arial, Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff1 span {font-family: ff1, Times New Roman, Times, serif; font-weight: bold; font-style: normal;
+}
+#scribd_embedded_doc div.ff2 span {font-family: ff2, Arial, Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff3 span {font-family: ff3, Times New Roman, Times, serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff4 span {font-family: ff4, Arial, Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff5 span {font-family: ff5, Times New Roman, Times, serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff6 span {font-family: ff6, Arial, Arial, Helvetica, sans-serif; font-weight: normal; font-style: normal;
+}
+#scribd_embedded_doc div.ff7 span {font-family: ff7, Times New Roman, Times, serif; font-weight: normal; font-style: normal;
+}
+.ff0, .ff1, .ff2, .ff3, .ff4, .ff5, .ff6, .ff7 {display: none;}
+</style><script> 
+  docManager.setupTestElements();
+</script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1, 6], "pageNum": 1};
+
+        pageParams.containerElem = document.getElementById("outer_page_1");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/1-945de80356.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 6, 0, 4], "pageNum": 2};
+
+        pageParams.containerElem = document.getElementById("outer_page_2");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/2-a212d39973.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [7, 0, 3, 1, 6], "pageNum": 3};
+
+        pageParams.containerElem = document.getElementById("outer_page_3");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/3-b63c6e574d.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1], "pageNum": 4};
+
+        pageParams.containerElem = document.getElementById("outer_page_4");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/4-8da6b509eb.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1], "pageNum": 5};
+
+        pageParams.containerElem = document.getElementById("outer_page_5");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/5-dbcfa0b98b.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 6, 1, 7, 0, 5], "pageNum": 6};
+
+        pageParams.containerElem = document.getElementById("outer_page_6");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/6-fc7b64123f.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 1, 5, 2, 0], "pageNum": 7};
+
+        pageParams.containerElem = document.getElementById("outer_page_7");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/7-67cc2fa53f.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 1, 6], "pageNum": 8};
+
+        pageParams.containerElem = document.getElementById("outer_page_8");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/8-658a126029.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 1, 6], "pageNum": 9};
+
+        pageParams.containerElem = document.getElementById("outer_page_9");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/9-829759fdc4.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 4, 6, 1], "pageNum": 10};
+
+        pageParams.containerElem = document.getElementById("outer_page_10");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/10-532b3aee2d.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1, 7, 0, 5], "pageNum": 11};
+
+        pageParams.containerElem = document.getElementById("outer_page_11");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/11-9fa27a07eb.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [5, 3, 7, 0, 1, 6], "pageNum": 12};
+
+        pageParams.containerElem = document.getElementById("outer_page_12");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/12-393e731368.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 6, 1, 7], "pageNum": 13};
+
+        pageParams.containerElem = document.getElementById("outer_page_13");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/13-f2639add16.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3], "pageNum": 14};
+
+        pageParams.containerElem = document.getElementById("outer_page_14");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/14-0cc72a5f2b.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script><script>
+    if (window.docManagerIEAdded != true) {
+      docManager.allPagesAdded();
+    }
+  </script><style></style><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/61115488"></script><link href="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/ttfs.css" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/seamless.css"><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/seamless.js"></script></head>
+<!--[if lt IE 7 ]>
+  <body class='ie ie6 c-single_work a-show logged_out'>
+<![endif]-->
+<!--[if IE 7 ]>
+  <body class='ie ie7 c-single_work a-show logged_out'>
+  <link rel="stylesheet" href="//a.academia-assets.com/stylesheets/font-awesome-ie7.css">
+<![endif]-->
+<!--[if IE 8 ]>
+  <body class='ie ie8 c-single_work a-show logged_out'>
+<![endif]-->
+<!--[if gte IE 9 ]>
+  <body class='ie ie9 c-single_work a-show logged_out'>
+<![endif]-->
+<!--[if !(IE) ]><!-->
+  <body class="c-single_work a-show logged_out" style="width: 100%;">
+<!--<![endif]-->
+
+      
+
+    
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/KTWTb9MY5lw.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/KTWTb9MY5lw(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script type="text/javascript">
+window.fbAsyncInit = function () {
+    FB.init({
+        appId: '2369844204',
+        channelUrl: '//www.academia.edu/channel.html',
+        version: 'v2.2',
+        status: true,
+        cookie: true,
+        oauth: true,
+        xfbml: true
+    });
+
+    if (window.Facebook != null) {
+        Facebook.run_ready_listeners();
+    }
+};
+
+window.fbAsyncLoad = function() {
+    if (window.FB) {
+        return;
+    }
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+}
+
+if (!window.defer_facebook) {
+    window.fbAsyncLoad();
+} else {
+    setTimeout(function(){
+        window.fbAsyncLoad();
+    }, 5000);
+}
+</script>
+
+
+    
+<div id="google-root">
+</div>
+<script type="text/javascript">
+window.loadGoogle = function() {
+  gapi.client.setApiKey('AIzaSyB924RA9X5fW1hDUt8BUfLNqzPKdno5W5c');
+  gapi.auth.init();
+
+  if (window.Google != null) {
+    Google.client_id = '331998490334-rsn3chp12mbkiqhl6e7lu2q0mlbu0f1b';
+    Google.check_authorization();
+  }
+};
+
+window.googleAsyncLoad = function() {
+    if (window.gapi) {
+        return;
+    }
+    (function(d) {
+        var js;
+        var id = 'google-jssdk';
+        var ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "https://apis.google.com/js/client.js?onload=loadGoogle"
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+}
+
+if (!window.defer_google) {
+    window.googleAsyncLoad();
+} else {
+    setTimeout(function(){
+        window.googleAsyncLoad();
+    }, 5000);
+}
+</script>
+
+
+
+  
+  <!--[if lt IE 9]><div id="upgrade_ie_banner"><div id="update_prompt"><a href="http://www.academia.edu/what_browser"><div class="button dark-grey upgrade_browser">Upgrade Now</div></a><p>You're using an out of date version of Internet Explorer.</p><p class="small">To <a href="http://www.academia.edu/what_browser">browse Academia.edu and the wider internet faster and more securely</a>, please take a few seconds to <a href="http://www.academia.edu/what_browser">upgrade your browser</a>.</p></div></div><![endif]-->
+
+
+
+        
+  <div class="main-header bootstrap">
+  <div id="main-header-container" class="container">
+    <a class="brand-logo pull-left" href="http://www.academia.edu/">
+        <img alt="" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/white-academia-logo.png">
+</a>
+    <div class="nav-wrapper">
+      <ul class="nav-links pull-right list-unstyled">
+          <li><a class="light" id="nav_log_in" href="http://www.academia.edu/login">Log In</a></li>
+          <li><a class="light" href="http://www.academia.edu/signup">Sign Up</a></li>
+      </ul>
+      <div class="nav-search-wrapper">
+        <form class="nav-search-form" action="http://www.academia.edu/people/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">          <span class="nav-search-input-wrapper">
+            <input type="text" name="q" placeholder="Search..." class="nav-search-input search-box ac_input" autocomplete="off"><i class="fa fa-search"></i>
+          </span>
+</form>
+        <div class="nav-search-prompt">
+          <span class="tip">Type to search for People, Research Interests and Universities</span>
+          <div class="nav-search-loader"><i class="fa fa-spinner fa-spin fa-2x"></i><br>Searching...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  window.navigation = new NavigationController({
+    elements: {
+    navigation_container: '.nav-links',
+    normal_container: '#normal_notifications',
+    notification_container: '.nav-links .notification-container',
+    notification_counter: '.nav-links .notification-counter',
+    account_link: '.nav-links .my_account',
+    account_menu: '.nav-links #my_account_menu',
+    discussions_menu: '.nav-links .discussions-dropdown-trigger'
+    },
+    ios: false,
+    nav_open: false  });
+
+  window.autocomplete_search = new AutocompleteSearch();
+  window.autocomplete_search.bind();
+</script>
+
+
+  <div id="site" class="fixed w_responsive">
+
+    <div id="content" class="clearfix">
+          
+  <script type="text/javascript">if (window.$current_user) {
+  var work_authors = [{"id":528328,"first_name":"Wazir Zada"}];
+  window.$current_user.is_author = _.any(work_authors, function (author) { return author.id == window.$current_user.id; });
+}
+
+// ab test info for development
+window.ad_and_rss_ab = null;
+$a.log(null);
+
+if (false){
+  $('body').addClass('viewed_by_owner')
+}</script><div class="spp swp-v2" id="document_body"><div class="work-head clearfix work_782397" data-work_id="782397" itemscope="itemscope" itemtype="http://schema.org/ScholarlyWork"><h1 class="work-title text-slim text-center" id="swp-work-title"><span itemprop="name">Overview of Algorithms and Techniques for Optical Music Recognition</span></h1><div class="work-toolbar bg-gray-lightest affix" id="swp-work-toolbar" style="width: 990px;"><div class="clearfix"><ul class="work-details list-unstyled list-inline pull-left"><li><a class="pull-left" data-has-card-for-user="528328" href="http://independent.academia.edu/WazirZadaKhan"><div class="work-owner"><div class="media"><span class="pull-left"><img class="avatar-md media-object" alt="Wazir Zada Khan" border="0" onerror="if (this.src != &#39;//a.academia-assets.com/images/s65_no_pic.png&#39;) this.src = &#39;//a.academia-assets.com/images/s65_no_pic.png&#39;;" width="65" height="65" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/s65_wazir_zada.khan.jpg"></span><div class="media-body pull-left"><h5 class="media-heading"><small><em class="light">Uploaded by</em><br></small><span class="work-owner-name"><span itemprop="author">Wazir Zada Khan</span></span></h5></div></div></div></a><script data-card-contents-for-user="528328" type="text/json">{"id":528328,"first_name":"Wazir Zada","last_name":"Khan","page_name":"WazirZadaKhan","domain_name":"independent","created_at":"2011-07-03T22:38:01.415-07:00","display_name":"Wazir Zada Khan","url":"https://independent.academia.edu/WazirZadaKhan","photo":"https://0.academia-photos.com/528328/187392/1409971/s65_wazir_zada.khan.jpg","interests":[{"id":163686,"name":"Network and System Security, Sensor Networks, Wireless and Ad Hoc Networks","url":"https://www.academia.edu/People/Network_and_System_Security_Sensor_Networks_Wireless_and_Ad_Hoc_Networks"},{"id":4370,"name":"Security","url":"https://www.academia.edu/People/Security"},{"id":1036263,"name":"Clone Attack","url":"https://www.academia.edu/People/Clone_Attack"},{"id":975645,"name":"Node Replication Attack","url":"https://www.academia.edu/People/Node_Replication_Attack"},{"id":975643,"name":"Clone Node Attack","url":"https://www.academia.edu/People/Clone_Node_Attack"},{"id":1036266,"name":"Mobile Sensor Network","url":"https://www.academia.edu/People/Mobile_Sensor_Network"},{"id":340186,"name":"Using Spamming Botnets: Signatures and Characteristics","url":"https://www.academia.edu/People/Using_Spamming_Botnets_Signatures_and_Characteristics"},{"id":340183,"name":"Botnet Detection Algorithms","url":"https://www.academia.edu/People/Botnet_Detection_Algorithms"},{"id":340185,"name":"Using uncleanliness to predict future botnet addresses","url":"https://www.academia.edu/People/Using_uncleanliness_to_predict_future_botnet_addresses"},{"id":340187,"name":"Outsourcing Home Network Security","url":"https://www.academia.edu/People/Outsourcing_Home_Network_Security"},{"id":340184,"name":"Detection of Botnets Using Combined Host- and Network-Level  Information","url":"https://www.academia.edu/People/Detection_of_Botnets_Using_Combined_Host-_and_Network-Level_Information"},{"id":148667,"name":"Optical Music Recognition","url":"https://www.academia.edu/People/Optical_Music_Recognition"},{"id":2345,"name":"Wireless Communications","url":"https://www.academia.edu/People/Wireless_Communications"},{"id":4252,"name":"Computer Networks","url":"https://www.academia.edu/People/Computer_Networks"},{"id":3703,"name":"Network Security","url":"https://www.academia.edu/People/Network_Security"},{"id":5473,"name":"Embedded Systems","url":"https://www.academia.edu/People/Embedded_Systems"},{"id":422,"name":"Computer Science","url":"https://www.academia.edu/People/Computer_Science"},{"id":2008,"name":"Machine Learning","url":"https://www.academia.edu/People/Machine_Learning"},{"id":26860,"name":"Cloud Computing","url":"https://www.academia.edu/People/Cloud_Computing"},{"id":428,"name":"Algorithms","url":"https://www.academia.edu/People/Algorithms"},{"id":48,"name":"Engineering","url":"https://www.academia.edu/People/Engineering"},{"id":491,"name":"Information Technology","url":"https://www.academia.edu/People/Information_Technology"},{"id":465,"name":"Artificial Intelligence","url":"https://www.academia.edu/People/Artificial_Intelligence"},{"id":49,"name":"Electrical Engineering","url":"https://www.academia.edu/People/Electrical_Engineering"},{"id":37,"name":"Information Systems","url":"https://www.academia.edu/People/Information_Systems"},{"id":9136,"name":"Wireless Sensor Networks","url":"https://www.academia.edu/People/Wireless_Sensor_Networks"}]}</script></li><li class="percentile-widget-container"><span class="percentile-widget" style="display: none"><i class="percentile-icon fa fa-trophy fa-lg"></i><strong class="work-percentile"></strong></span><script type="text/javascript">$(function () {
+  var workId = 782397;
+  var authorIds = _([528328]);
+
+  window.Academia.workPercentilesFetcher.queue(workId, function (percentileText) {
+    var container = $('.work_782397');
+
+    container.find('.work-percentile').text(percentileText);
+    container.find('.percentile-widget').show();
+
+    if (1) {
+      $('.percentile-widget').tooltip({ title: 'by 30-day views', placement: 'bottom' });
+    }
+
+    if (1) {
+      if (typeof $current_user !== "undefined" && $current_user !== null && authorIds.contains($current_user.id)) {
+        window.thisTweetText = "My paper is in the " + percentileText + " on @academia!";
+        window.thisTweetVia  = "";
+      }
+    }
+  });
+});</script></li><li><span class="view-count-widget" style="" title="1,567 views"><i class="view-count-icon fa fa-eye fa-lg"></i><strong class="view-count">1,567</strong></span><script type="text/javascript">$(function () {
+  var workId = 782397;
+
+  window.Academia.workViewCountsFetcher.queue(workId, function (count) {
+    var commaized = window.$h.commaizeInt(count);
+    var container = $('.work_782397');
+
+    container.find('.view-count').text(commaized);
+    container.find('.view-count-widget').show().attr('title', commaized + ' views');
+  });
+});</script></li><script type="text/javascript">req('single_work')</script><li><button class="btn btn-none work-info-button" id="work-info-button"><i class="fa fa-ellipsis-h fa-lg"></i>&nbsp;&nbsp;&nbsp; Info</button></li><li><script type="text/javascript">window.thisTweetText = 'Overview of Algorithms and Techniques for Optical Music Recognition'
+window.thisTweetVia  = 'academia'</script><button class="btn btn-none btn-tweet" onclick="window.Academia.openTwitterShareWindow(window.thisTweetText, &#39;http://www.academia.edu/782397/Overview_of_Algorithms_and_Techniques_for_Optical_Music_Recognition&#39;, window.thisTweetVia)"><i class="fa fa-twitter fa-lg"></i></button></li></ul><div class="btn-toolbar pull-right"><div class="pull-left"><div class="work-download-button-container" data-preview-attachment-id="Attachment_4647518"><a id="92f9d17d57ff862b8fb446f50038e410" rel="nofollow" data-download="{&quot;attachment_id&quot;:4647518,&quot;asset_id&quot;:782397,&quot;asset_type&quot;:&quot;Work&quot;,&quot;redirect_to&quot;:&quot;/attachments/4647518/download&quot;,&quot;always_allow_download&quot;:false,&quot;track&quot;:null,&quot;button_location&quot;:&quot;swp-toolbar&quot;}" class="btn btn-success work-download-button js-work-download-button" href="http://www.academia.edu/attachments/4647518/download_file?st=MTQzMTQwOTYzNSwxODguMTkzLjkzLjIxMw%3D%3D&s=swp-toolbar">Download&nbsp;&nbsp;&nbsp;<span class="label label-inverse-success">PDF</span></a></div></div></div></div></div></div><script type="text/javascript">(function() {
+  $(function() {
+    var $title, $toolbar, setToolbarWidth;
+    $toolbar = $('#swp-work-toolbar');
+    $title = $('#swp-work-title');
+    setToolbarWidth = function() {
+      var titleWidth;
+      titleWidth = $title.width();
+      $toolbar.width(titleWidth);
+      return $("#coauthor-tag-request-toolbar").width(titleWidth - 20);
+    };
+    $(window).resize(setToolbarWidth);
+    return setToolbarWidth();
+  });
+
+}).call(this);
+</script><script type="text/javascript">(function() {
+  $("#work-info-button").click(function() {
+    if ($("#work-metadata-collapse-wrapper").hasClass("in")) {
+      return $("#work-metadata-collapse-wrapper").collapse('hide');
+    } else {
+      $("#work-metadata-collapse-wrapper").collapse('show');
+      return $('html,body').animate({
+        scrollTop: 0
+      }, 600);
+    }
+  });
+
+  $(".work-flag-btn > a").popover({
+    template: '<div class="popover work-flag-popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
+    title: "What's the problem with this work?",
+    content: function() {
+      var id;
+      id = $(this).data("moderateable-id");
+      return "<div class=\"actions\">\n  <div class=\"radio\"><label><input type=\"radio\" name=\"reason\" value=\"spam\" checked> Promotional spam</label></div>\n  <div class=\"radio\"><label><input type=\"radio\" name=\"reason\" value=\"copyright\"> Copyrighted material</label></div>\n  <div class=\"radio\"><label><input type=\"radio\" name=\"reason\" value=\"authorship\"> Uploader is not an author</label></div>\n  <div class=\"radio\"><label><input type=\"radio\" name=\"reason\" value=\"other\"> Something else</label></div>\n\n  <p class=\"text-center\">\n    <button type=\"button\" class=\"btn btn-default\">Cancel</button>\n    <button type=\"button\" class=\"btn btn-danger\" data-moderateable-id=\"" + id + "\">Report</button>\n  </p>\n</div>";
+    },
+    html: true
+  });
+
+  $(document).on("click", ".work-flag-popover .btn-danger", function(ev) {
+    return req_and_ready("moderation_requests", function() {
+      var reason;
+      reason = $(".work-flag-popover input[type=radio]:checked").val();
+      Moderation.submit_moderation_request($(ev.target).data("moderateable-id"), "Work", "Flag", {
+        reason: reason
+      });
+      $(".work-flag-popover").addClass("confirmed");
+      $(".work-flag-btn > a").hide();
+      $(".work-flag-popover .popover-content .actions").text("Thank you for your feedback!");
+      return setTimeout((function() {
+        return $(".work-flag-btn").fadeOut();
+      }), 1500);
+    });
+  });
+
+  $(document).on("click", ".work-flag-popover .btn-default", function(ev) {
+    return $(".work-flag-popover").popover("hide");
+  });
+
+}).call(this);
+</script><script type="text/javascript">(function(){
+  if (true) {
+    var attachment = {
+      index: 0,
+      id: 'Attachment_4647518'
+    }
+  }
+
+  req_and_ready('single_work', function(){
+    new SingleWork.AttachmentPreviewController({
+      attachment: attachment,
+      multiple_viewable_attachments: false
+    });
+  });
+
+})()</script><div class="content work-body-wrapper container-fluid"><div class="row coauthor-tag-request-toolbar-wrapper"></div><div class="row"><div class="swp-content col-xs-12 no-padding"><div class="work-metadata-collapse-wrapper collapse" id="work-metadata-collapse-wrapper"><div class="panel work-metadata-wrapper"><div class="work-metadata-container clearfix"><h4><strong>Abstract:</strong></h4><p>The systems for music score recognition are traditionally called OMR. In this paper we have presented an overview of different techniques and algorithms which can be used at various steps of music symbol recognition. In the very first, we have given some background for music. Then the details of the four basic steps usually used by OMR systems and then detailed analysis of the techniques used for Optical Music Recognition. OMR can be of two types i.e. recognition of printed music and handwritten music symbols. This paper addresses techniques that are used for recognition of printed music symbols.</p><div class="metadata"><h6 class="metadatum"><strong>More Info: </strong>Quratul-Ain Arshad, Wazir Zada Khan, Zohair Ihsan,
+
+Appear in the proceedings of 4th CIIT Workshop on Research in Computing (4th CWRC Fall 2006) held at CIIT Attock, Pakistan, on November 10, 2006.</h6></div></div></div></div><div class="previews"><div class="attachment_preview" data-attachment="Attachment_4647518" style=""><div class="scribd-reflowable-doc js-scribd-document-container scribd_document_container clearfix scribd_document_container_4647518"><div class="scribd_document_loader js-scribd-document-loader text-center" style="display: none;"><img src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/paper-load.gif" alt="Paper load"><p>Loading Preview</p></div><div id="scribd-reflowable-doc"><div id="scribd_embedded_doc"><script type="text/javascript" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4gen.js"></script><div id="font_preload_bed" style="position:absolute; height: 1px; left: 0; top:0; max-width: 100%; visibility: hidden; overflow: hidden"> <div><span style="font-family: ff0">scribd.</span> <span style="font-family: ff1">scribd.</span> <span style="font-family: ff2">scribd.</span> <span style="font-family: ff3">scribd.</span> <span style="font-family: ff4">scribd.</span> <span style="font-family: ff5">scribd.</span> <span style="font-family: ff6">scribd.</span> <span style="font-family: ff7">scribd.</span> </div></div>
+<script type="text/javascript"> 
+  docManager.setupTestElements();
+</script>
+
+<div class="outer_page_container">
+  
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_1" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  <div style="-webkit-transform: scale(1.07538802660754); -webkit-transform-origin: left top 0px; display: block;"><div class="newpage" id="page1" style="width: 902px; height:1167px">
+<div class="text_layer" style="z-index:2"><div class="ie_fix">
+&nbsp;
+<div class="ff3" style="font-size:162px">
+<span class="a" style="left:680px;top:571px;word-spacing:-2px">Overview of Algorithms and Techniques for&nbsp;</span><span class="a" style="left:1296px;top:775px;word-spacing:-3px">Optical Music Recognition</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1463px;top:953px;word-spacing:-3px">Quratul-Ain Arshad , Wazir Zada Khan, Zohair Ihsan</span></div>
+<div class="ff3" style="font-size:74px">
+<span class="a" style="left:1231px;top:1125px;word-spacing:1px">(brightsuccess_12, wazirzadakhan, zohairihsan}@hotmail.com</span><span class="a" style="left:1724px;top:1218px">Department of Computer Science</span><span class="a" style="left:1132px;top:1311px">COMSATS Institute of Information Technology, Wah Cantt, Pakitan</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:3377px;top:1316px">&nbsp;</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:663px;top:1572px">Abstract:</span><span class="a" style="left:663px;top:1657px;word-spacing:23px">The systems for music score recognition are</span><span class="a" style="left:663px;top:1742px;word-spacing:1px">traditionally called OMR. In this paper we have</span><span class="a" style="left:663px;top:1827px;word-spacing:17px">presented an overview of different techniques</span><span class="a" style="left:663px;top:1912px;word-spacing:17px">and algorithms which can be used at various</span><span class="a" style="left:663px;top:1996px;word-spacing:11px">steps of music symbol recognition. In the very</span><span class="a" style="left:663px;top:2081px">first, we have given some background for music.</span><span class="a" style="left:663px;top:2166px;word-spacing:8px">Then the details <span class="l7">of <span class="w" style="width:23px"></span>the four basic <span class="l6">steps usually</span></span></span><span class="a" style="left:663px;top:2250px;word-spacing:43px">used by OMR systems and then detailed</span><span class="a" style="left:663px;top:2335px;word-spacing:32px">analysis of the techniques used for Optical</span><span class="a" style="left:663px;top:2420px;word-spacing:14px">Music Recognition. OMR can be of two types</span><span class="a" style="left:663px;top:2505px;word-spacing:76px">i.e. <span class="l" style="margin-left:-14px">recognition <span class="l" style="margin-left:-16px">of <span class="w" style="width:65px"></span>printed <span class="l" style="margin-left:-15px">music <span class="l" style="margin-left:-16px">and</span></span></span></span></span><span class="a" style="left:663px;top:2590px;word-spacing:69px">handwritten music symbols. This paper</span><span class="a" style="left:663px;top:2674px;word-spacing:64px">addresses techniques that are used for</span><span class="a" style="left:663px;top:2759px;word-spacing:-2px">recognition of printed music symbols.</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:2927px">1.</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:718px;top:2924px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:795px;top:2927px;letter-spacing:-1px">INTRODUCTION:</span><span class="a" style="left:663px;top:3097px">The area of Optical Music Recognition (OMR) has</span><span class="a" style="left:663px;top:3182px;word-spacing:-2px">long been overwhelmed by an inability to provide a</span><span class="a" style="left:663px;top:3267px;word-spacing:32px">definitive method for identifying and locating</span><span class="a" style="left:663px;top:3351px;word-spacing:41px">musical objects, which are superimposed on</span><span class="a" style="left:663px;top:3436px;word-spacing:-4px">musical stave lines.</span><span class="a" style="left:663px;top:3606px;word-spacing:27px">Optical Music Recognition (OMR) is form of&nbsp;</span><span class="a" style="left:663px;top:3690px;word-spacing:35px">structured document image analysis in which</span><span class="a" style="left:663px;top:3775px;word-spacing:8px">music symbols overlaid on the conventional five-</span><span class="a" style="left:663px;top:3860px;word-spacing:4px">line stave are isolated and identified so that music</span><span class="a" style="left:663px;top:3944px;word-spacing:2px">can be played through a MIDI system, or edited in</span><span class="a" style="left:663px;top:4029px;word-spacing:24px">a music publishing system. Traditionally OMR&nbsp;</span><span class="a" style="left:663px;top:4114px;word-spacing:31px">systems have had recognition techniques hard</span><span class="a" style="left:663px;top:4199px;word-spacing:-3px">coded in software.</span><span class="a" style="left:663px;top:4368px;word-spacing:5px">Optical Music Recognition (OMR) Systems allow</span><span class="a" style="left:644px;top:4453px">&nbsp;people <span class="w6"></span>to <span class="w6"></span>scan printed <span class="w10"></span>music onto <span class="w11"></span>a <span class="w7"></span>computer and</span><span class="a" style="left:663px;top:4538px;word-spacing:9px">have it played by the computer, or brought up in</span><span class="a" style="left:663px;top:4622px;word-spacing:20px">music editor. OMR has many applications. For&nbsp;</span><span class="a" style="left:663px;top:4707px;word-spacing:8px">Example, a vocalist can practice with a computer&nbsp;</span><span class="a" style="left:644px;top:4792px">&nbsp;playing an <span class="w10"></span>accompaniment, a <span class="w8"></span>musician can <span class="w9"></span>have <span class="w6"></span>a</span><span class="a" style="left:644px;top:4876px">&nbsp;piece <span class="w" style="width:52px"></span>of <span class="w" style="width:52px"></span>music <span class="w" style="width:52px"></span>transposed <span class="w" style="width:50px"></span>to <span class="w" style="width:52px"></span>another <span class="w" style="width:51px"></span>key</span><span class="a" style="left:663px;top:4961px;word-spacing:9px">automatically; the notation of the music could be</span><span class="a" style="left:663px;top:5046px;word-spacing:3px">converted (for example, to tablature or Braille); or&nbsp;</span><span class="a" style="left:663px;top:5131px;word-spacing:-3px">an old edition of <span class="w6"></span>the music could be re-edited.</span><span class="a" style="left:2321px;top:1572px;word-spacing:12px">Despite to the availability of several commercial</span><span class="a" style="left:2321px;top:1657px;word-spacing:52px">OMRs including PIANISCAN, NOTESCAN,</span><span class="a" style="left:2321px;top:1741px;word-spacing:22px">MIDISCAN, PhotoScore, SmartScore, SharpEye</span><span class="a" style="left:2321px;top:1826px;word-spacing:32px">etc, none of these is satisfactory in term of&nbsp;</span><span class="a" style="left:2302px;top:1911px">&nbsp;precision and rel<span class="l6">iability.</span></span><span class="a" style="left:2321px;top:2080px;word-spacing:30px">In the recent years, OMR systems have also</span><span class="a" style="left:2302px;top:2165px">&nbsp;become <span class="w" style="width:13px"></span>available. <span class="w" style="width:13px"></span>Systems <span class="w" style="width:14px"></span>are <span class="w" style="width:15px"></span>either <span class="w" style="width:13px"></span>pure <span class="w" style="width:15px"></span>OMR&nbsp;</span><span class="a" style="left:2321px;top:2250px;word-spacing:2px">ayatems (e.g MIDISCAN, Capella-scan) or part of&nbsp;</span><span class="a" style="left:2321px;top:2334px;word-spacing:44px">a larger music editing system (e.g Finale).</span><span class="a" style="left:2321px;top:2419px;word-spacing:24px">Common to all these systems is that they are</span><span class="a" style="left:2321px;top:2504px;word-spacing:12px">designed to recognize printed sheet music scores</span><span class="a" style="left:2321px;top:2589px;word-spacing:20px">where the contrast between music symbols and</span><span class="a" style="left:2302px;top:2673px">&nbsp;background <span class="w" style="width:16px"></span>is <span class="w" style="width:17px"></span>good, <span class="w" style="width:16px"></span>staff <span class="w" style="width:16px"></span>lines <span class="w" style="width:16px"></span>are <span class="w" style="width:16px"></span>straight, <span class="w" style="width:14px"></span>and</span><span class="a" style="left:2321px;top:2758px;word-spacing:6px">symbols are printed clearly. However, they fail at</span><span class="a" style="left:2321px;top:2843px;word-spacing:4px">the task of recognizing historic handwritten music</span><span class="a" style="left:2321px;top:2928px;word-spacing:17px">scores because of degraded paper and ink, bent</span><span class="a" style="left:2321px;top:3012px;word-spacing:-2px">staff lines, notations that vary from writer to writer,</span><span class="a" style="left:2321px;top:3097px;word-spacing:14px">symbols shinning through from the reverse page</span><span class="a" style="left:2321px;top:3182px;word-spacing:-2px">and so on [7].</span><span class="a" style="left:2321px;top:3351px;word-spacing:8px">The term OMR is tightly linked to OCR (Optical</span><span class="a" style="left:2321px;top:3436px;word-spacing:4px">Character Recognition).Typically OCR techniques</span><span class="a" style="left:2321px;top:3521px;word-spacing:15px">cannot be used in music score recognition. It is</span><span class="a" style="left:2321px;top:3606px;word-spacing:13px">related to OCR but there comes some important</span><span class="a" style="left:2321px;top:3690px;word-spacing:14px">extra challenges.One important difference is that</span><span class="a" style="left:2321px;top:3775px;word-spacing:-1px">music is two-dimentional (pitch vertically and time</span><span class="a" style="left:2321px;top:3860px;word-spacing:52px">horizontally), while text is one-dimentional.</span><span class="a" style="left:2321px;top:3944px;word-spacing:11px">Another significant complication in music is that</span><span class="a" style="left:2321px;top:4029px;word-spacing:9px">the symbols are ussually overlayed on a five line</span><span class="a" style="left:2321px;top:4114px;word-spacing:25px">stave, so its difficult to isolate symbols. Also</span><span class="a" style="left:2321px;top:4199px;word-spacing:4px;letter-spacing:-1px">unlike OCR, symbols are</span><span class="a" style="left:2321px;top:4283px;word-spacing:10px">made up of components that can be combined in</span><span class="a" style="left:2321px;top:4368px;word-spacing:-3px">many ways.</span><span class="a" style="left:2321px;top:4538px">2.</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:2376px;top:4534px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2454px;top:4538px;word-spacing:5px;letter-spacing:-1px">MUSICAL BACKGROUND:</span><span class="a" style="left:2321px;top:4707px">There are some musical terms and symbols that we</span><span class="a" style="left:2321px;top:4792px;word-spacing:15px">should be familiar with to better understand the</span><span class="a" style="left:2321px;top:4876px;word-spacing:13px">Recognition of Musical symbols. In order to get</span><span class="a" style="left:2321px;top:4961px;word-spacing:14px">familiar <span class="l6">with them <span class="l7">we have fi<span class="l6">rst given <span class="w" style="width:26px"></span>a prpoer&nbsp;</span></span></span></span><span class="a" style="left:2321px;top:5046px;word-spacing:-4px">nomenclature for musical terms.</span></div>
+</div>
+</div>
+</div>
+
+</div></div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1, 6], "pageNum": 1};
+
+        pageParams.containerElem = document.getElementById("outer_page_1");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/1-945de80356.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_2" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  <div style="-webkit-transform: scale(1.07538802660754); -webkit-transform-origin: left top 0px; display: block;"><div class="newpage" id="page2" style="width: 902px; height:1167px">
+<div class="text_layer" style="z-index:2"><div class="ie_fix">
+&nbsp;
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:546px">&nbsp;</span><span class="a" style="left:663px;top:631px">2.1</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:928px;top:632px">Staff:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:801px;word-spacing:1px">A staff is made up of five horizontal lines and four&nbsp;</span><span class="a" style="left:663px;top:885px;word-spacing:-2px">spaces. The height of a note on <span class="w6"></span>the page determines</span><span class="a" style="left:663px;top:970px;word-spacing:7px">its pitch. Because people are unable to accurately</span><span class="a" style="left:644px;top:1055px">&nbsp;judge relative heig<span class="l6">hts over great distanc<span class="l6">es, lines are</span></span></span><span class="a" style="left:663px;top:1140px;word-spacing:-2px">drawn on the page to show the distinctions between</span><span class="a" style="left:663px;top:1224px;word-spacing:4px">heights. It is standard to draw 5 lines and they are</span><span class="a" style="left:663px;top:1309px;word-spacing:-3px">called the</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:966px;top:1310px">staff&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1111px;top:1309px">or&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1191px;top:1310px">stave</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1361px;top:1309px">[18].</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:663px;top:1737px;word-spacing:2px">Fig 1: The Musical Staff (Five parallel, equidistant lines</span><span class="a" style="left:663px;top:1814px;word-spacing:-2px">with spaces in between</span></div>
+<div class="ff6" style="font-size:64px">
+<span class="a" style="left:1276px;top:1811px">)</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1299px;top:1809px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:1978px">2.2</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:755px;top:1955px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:928px;top:1978px">Pitches:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:2147px;word-spacing:-1px">Pitches are named after the first seven letters of <span class="w6"></span>the</span><span class="a" style="left:663px;top:2232px;word-spacing:-2px">alphabet (A B C D E F G) [18].</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:843px;top:3006px;word-spacing:-2px">Fig 2: The positions of <span class="w6"></span>alphabets on a piano</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:3170px;word-spacing:49px">2.3 <span class="w" style="width:104px"></span>Sounds <span class="l" style="margin-left:-51px">in <span class="l" style="margin-left:-50px">music:</span></span></span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:3338px;word-spacing:-2px">A sound in music usually has a definite</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1825px;top:3339px">&nbsp;pitch</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2010px;top:3338px;word-spacing:-2px">that is</span><span class="a" style="left:663px;top:3423px;word-spacing:15px">described as “high” or “low”. A musical sound,</span><span class="a" style="left:663px;top:3507px;word-spacing:-2px">called a</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:910px;top:3508px">tone,</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1076px;top:3507px;word-spacing:-2px">is produced when something causes a</span><span class="a" style="left:663px;top:3592px;word-spacing:6px">series of vibrations that recur a certain number of&nbsp;</span><span class="a" style="left:663px;top:3677px;word-spacing:6px">times each second. For example, heavy wires that</span><span class="a" style="left:663px;top:3762px;word-spacing:6px">vibrate slowly, only 32.7 times a second, produce</span><span class="a" style="left:663px;top:3847px;word-spacing:18px">the lowest C on the piano. The thin wires that</span><span class="a" style="left:644px;top:3932px">&nbsp;produce <span class="w11"></span>the <span class="w12"></span>highest <span class="w10"></span>C <span class="w11"></span>on <span class="w" style="width:13px"></span>the <span class="w11"></span>piano <span class="w11"></span>vibrate <span class="w11"></span>more</span><span class="a" style="left:663px;top:4016px;word-spacing:4px">than 4,000 times a second, or almost 130 times as</span><span class="a" style="left:663px;top:4101px;word-spacing:-3px">fast as the lowest [19].</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:4271px">2.4</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:755px;top:4248px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:776px;top:4271px">&nbsp;Notes and rests:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:4440px;word-spacing:8px">Musical tones also have other characteristics. For&nbsp;</span><span class="a" style="left:663px;top:4524px">example, some tones are long and some short. This</span><span class="a" style="left:663px;top:4609px;word-spacing:37px">is called</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1005px;top:4610px">duration</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1318px;top:4609px;word-spacing:38px">[19]. Notes are a double</span><span class="a" style="left:663px;top:4694px;word-spacing:8px">encoding of pitch and the duration for which that</span><span class="a" style="left:644px;top:4779px">&nbsp;pitches <span class="w" style="width:45px"></span>should <span class="w" style="width:46px"></span>be <span class="w" style="width:47px"></span>played. <span class="w" style="width:45px"></span>Note <span class="w" style="width:46px"></span>duration <span class="w" style="width:45px"></span>is</span><span class="a" style="left:663px;top:4864px;word-spacing:-2px">indicated by the number of flags a note has.</span><span class="a" style="left:663px;top:4948px;word-spacing:23px">Rests indicate silence or no sound. They have</span><span class="a" style="left:663px;top:5033px;word-spacing:7px">various shapes, and have the same time values or&nbsp;</span><span class="a" style="left:2321px;top:546px;word-spacing:61px">duration as the notes they replace [19].</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:2907px;top:1885px;word-spacing:-2px">Fig 3: Notes and Rests.</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:2321px;top:2134px">2.5</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:2413px;top:2110px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:2453px;top:2134px">Clefs:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2302px;top:2303px">&nbsp;Note pitch <span class="w10"></span>is heavily <span class="w10"></span>tied to <span class="w10"></span>the <span class="w6"></span>idea of <span class="w11"></span>clefs. The</span><span class="a" style="left:2321px;top:2387px;word-spacing:54px">staff alone does not indicate which lines</span><span class="a" style="left:2321px;top:2472px;word-spacing:20px">correspond to which pitches. A</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:3374px;top:2473px">clef&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:3522px;top:2472px;word-spacing:25px;letter-spacing:-1px">is used to</span><span class="a" style="left:2321px;top:2556px;word-spacing:9px">indicate which lines correspond to which pitches.</span><span class="a" style="left:2321px;top:2641px;word-spacing:11px">Clefs are symbols placed at the beginning of the</span><span class="a" style="left:2321px;top:2726px;word-spacing:-2px">staff that defines a pitch on a line [18].</span><span class="a" style="left:2321px;top:2811px;word-spacing:-3px">There are two types: [20].</span></div>
+<div class="ff4" style="font-size:27px">
+<span class="a" style="left:2453px;top:2918px">•</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:2488px;top:2897px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2586px;top:2901px;word-spacing:-3px">Treble clef (G clef)</span></div>
+<div class="ff4" style="font-size:27px">
+<span class="a" style="left:2453px;top:3008px">•</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:2488px;top:2988px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2586px;top:2991px;word-spacing:-3px">Bass clef (F clef)</span></div>
+<div class="ff6" style="font-size:64px">
+<span class="a" style="left:2971px;top:3203px;word-spacing:-2px">Treble Clef</span><span class="a" style="left:2989px;top:3518px;word-spacing:-1px">Bass Clef</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:2593px;top:3671px;word-spacing:-2px">Fig 4: TREBLE Clef and BASS Clef&nbsp;</span></div>
+<div class="ff7" style="font-size:60px">
+<span class="a" style="left:2321px;top:3824px">2.6&nbsp;</span></div>
+<div class="ff0" style="font-size:67px">
+<span class="a" style="left:2404px;top:3803px">&nbsp;</span></div>
+<div class="ff7" style="font-size:60px">
+<span class="a" style="left:2436px;top:3824px">&nbsp;Bar lines:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2321px;top:3987px;word-spacing:16px">Bar lines provide separation of measures. These</span><span class="a" style="left:2321px;top:4071px;word-spacing:12px">symbols are simply vertical lines that stretch the</span><span class="a" style="left:2321px;top:4156px;word-spacing:15px">height of the staff. Because of their shape, they</span><span class="a" style="left:2321px;top:4241px;word-spacing:-3px">resemble the stems of notes.</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:2390px;top:4699px;word-spacing:-2px">Fig 5: A vertical line placed in a STAFF to <span class="w6"></span>mark off&nbsp;</span><span class="a" style="left:2907px;top:4775px">MEASURES</span></div>
+</div>
+</div>
+<div class="image_layer" style="z-index: 1">
+<div class="ie_fix">
+<img class="absimg" style="left: 462px; top: 66px; width: 288px; height: 536px; clip: rect(56px 280px 308px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/2-a212d39973.jpg">
+<img class="absimg" style="left: 130px; top: 290px; width: 288px; height: 536px; clip: rect(1px 287px 54px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/2-a212d39973.jpg">
+<img class="absimg" style="left: 130px; top: 166px; width: 288px; height: 536px; clip: rect(310px 257px 432px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/2-a212d39973.jpg">
+<img class="absimg" style="left: 382px; top: 194px; width: 288px; height: 536px; clip: rect(434px 167px 535px 135px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/2-a212d39973.jpg">
+<img class="absimg" style="left: 515px; top: 426px; width: 288px; height: 536px; clip: rect(434px 133px 511px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/2-a212d39973.jpg">
+</div>
+</div>
+</div>
+
+</div></div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 6, 0, 4], "pageNum": 2};
+
+        pageParams.containerElem = document.getElementById("outer_page_2");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/2-a212d39973.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_3" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  <div style="-webkit-transform: scale(1.07538802660754); -webkit-transform-origin: left top 0px; display: block;"><div class="newpage" id="page3" style="width: 902px; height:1167px">
+<div class="text_layer" style="z-index:2"><div class="ie_fix">
+&nbsp;
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:547px">2.7&nbsp;</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:755px;top:524px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:795px;top:546px;word-spacing:-3px">BEAMS and SLURS:</span><span class="a" style="left:663px;top:631px;word-spacing:32px;color:#111111">The beam or hitch links two or more notes</span><span class="a" style="left:663px;top:716px;word-spacing:10px;color:#111111">together, in order to build a rhythmic or melodic</span><span class="a" style="left:663px;top:801px;word-spacing:-4px;color:#111111">entity [21].</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:1193px;top:1414px;word-spacing:-2px;color:#111111">Fig 6: Beam</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:1577px;color:#111111">A slur is located between two notes of any pitch. If&nbsp;</span><span class="a" style="left:663px;top:1661px;word-spacing:-2px;color:#111111">it is played, it behaves as a glissendo: the note pitch</span><span class="a" style="left:663px;top:1746px;word-spacing:6px;color:#111111">will vary smoothly or semitone by semitone from</span><span class="a" style="left:663px;top:1831px;word-spacing:1px;color:#111111">the first pitch to the second one. A slur can also be</span><span class="a" style="left:663px;top:1916px;word-spacing:3px;color:#111111">used, when underlining a whole group of notes, to</span><span class="a" style="left:663px;top:2001px;word-spacing:2px;color:#111111">specify "phrasing", i.e. indicate this group of notes</span><span class="a" style="left:663px;top:2086px;word-spacing:3px;color:#111111">has to be played in a single "sentence" (in a single</span><span class="a" style="left:644px;top:2170px;color:#111111">&nbsp;blow for a wind instrument). A slur can be inserted</span><span class="a" style="left:644px;top:2255px;color:#111111">&nbsp;between two not<span class="l6">es belonging to di<span class="l6">fferent staves.</span></span></span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:1193px;top:2890px;word-spacing:-1px;color:#111111">Fig 7: Slur&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:3054px">2.8</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:755px;top:3031px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:776px;top:3054px">&nbsp;Accidentals:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:3223px;word-spacing:-2px">The composer may place an</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1511px;top:3223px">accidental</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1837px;top:3223px;word-spacing:-1px">in front of a</span><span class="g" style="top:3308px"><span class="a" style="left:663px;word-spacing:11px">certain note.</span></span>
+</div>
+<div class="ff7" style="font-size:67px">
+<span class="g" style="top:3308px"><span class="a" style="left:1056px">&nbsp;Accidentals</span></span>
+</div>
+<div class="ff3" style="font-size:68px">
+<span class="g" style="top:3308px"><span class="a" style="left:1452px">are</span></span>
+</div>
+<div class="ff7" style="font-size:67px">
+<span class="g" style="top:3308px"><span class="a" style="left:1542px">&nbsp;</span></span>
+</div>
+<div class="ff3" style="font-size:68px">
+<span class="g" style="top:3308px"><span class="a" style="left:1575px;word-spacing:12px">the signs</span></span>
+</div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1850px;top:3308px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1883px;top:3308px">for&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:2002px;top:3308px">sharp,</span><span class="a" style="left:644px;top:3393px">&nbsp;flat, <span class="w6"></span>or <span class="w9"></span>natural</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1145px;top:3392px;word-spacing:7px">that shows a change from the key</span><span class="a" style="left:663px;top:3477px">signature.</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:952px;top:3478px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:981px;top:3477px">A</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1064px;top:3478px">key</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1162px;top:3477px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1192px;top:3478px">signature</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1501px;top:3477px;word-spacing:9px">appears at the right of&nbsp;</span><span class="a" style="left:663px;top:3562px">the clef sign. By using sharp signs or flat signs, the</span><span class="a" style="left:663px;top:3646px;word-spacing:41px">composer indicates that certain notes should</span><span class="a" style="left:663px;top:3731px;word-spacing:25px">always be played sharp or flat. Any note not</span><span class="a" style="left:663px;top:3816px;word-spacing:-3px">marked with sharp or flat is <span class="w6"></span>called</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:1688px;top:3817px">natural</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:1905px;top:3816px">.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:663px;top:3900px;word-spacing:1px">Sharp (#)</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:961px;top:3901px;word-spacing:-1px">: A symbol that raises a note by <span class="w7"></span>one half-</span><span class="a" style="left:663px;top:3985px">step.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:663px;top:4070px;word-spacing:2px">Flat (b)</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:901px;top:4070px;word-spacing:3px">: <span class="w" style="width:17px"></span>A symbol that <span class="l7">lowers a note by <span class="l6">one half-</span></span></span><span class="a" style="left:663px;top:4155px">step.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:663px;top:4253px">Natural</span></div>
+<div class="ff3" style="font-size:81px">
+<span class="a" style="left:908px;top:4243px;word-spacing:9px">: A symbol that removes the effect</span><span class="a" style="left:663px;top:4345px;word-spacing:21px">of a sharp or flat sign, so that the note</span><span class="a" style="left:663px;top:4447px;word-spacing:-1px">represents a pitch that is not, sharp or flat.</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2146px;top:4457px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:663px;top:4649px">2.9</span></div>
+<div class="ff0" style="font-size:74px">
+<span class="a" style="left:755px;top:4626px">&nbsp;</span></div>
+<div class="ff7" style="font-size:67px">
+<span class="a" style="left:795px;top:4649px">Scores:</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:4836px;word-spacing:65px">Scores contain music written for several</span><span class="a" style="left:663px;top:4921px;word-spacing:-3px">instruments, or for instruments and voices [19].</span><span class="a" style="left:2321px;top:546px">3.</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:2376px;top:543px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2454px;top:546px;word-spacing:95px">STEPS FOR RECONIZING MUSIC</span><span class="a" style="left:2454px;top:631px">SYMBOLS:</span><span class="a" style="left:2321px;top:801px;word-spacing:14px">OMR systems generally have the following four&nbsp;</span><span class="a" style="left:2321px;top:885px;word-spacing:-3px">stages in their recognition process. [1]</span><span class="a" style="left:2321px;top:970px;word-spacing:-2px">These steps are shown in the Fig 8.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2321px;top:1055px;word-spacing:-3px">Stave line identification</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:3061px;top:1056px">&nbsp;</span><span class="a" style="left:2321px;top:1140px;word-spacing:34px">The position of the staves is identified, and</span><span class="a" style="left:2321px;top:1224px;word-spacing:39px">(usually) the lines are removed, leaving the</span><span class="a" style="left:2321px;top:1309px;word-spacing:-5px">superimposed musical symbols.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2321px;top:1479px;word-spacing:-3px">Musical object location</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:3049px;top:1479px">&nbsp;</span><span class="a" style="left:2321px;top:1563px;word-spacing:1px">The symbols that were on and around the stave are</span><span class="a" style="left:2321px;top:1648px">located.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2321px;top:1818px;word-spacing:-5px">Symbol identification</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2994px;top:1818px">&nbsp;</span><span class="a" style="left:2321px;top:1902px;word-spacing:-2px">The type of each symbol is determined.</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2321px;top:2072px;word-spacing:-2px">Semantics of music notation</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:3203px;top:2073px">&nbsp;</span><span class="a" style="left:2321px;top:2156px;word-spacing:16px">The relationship between symbols is determined</span><span class="a" style="left:2321px;top:2241px;word-spacing:30px">and the information is stored in a form that</span><span class="a" style="left:2302px;top:2326px">&nbsp;programs such <span class="w11"></span>as <span class="w7"></span>sequencers <span class="w6"></span>or <span class="w7"></span>music editors <span class="w11"></span>can</span><span class="a" style="left:2321px;top:2411px">use.</span><span class="a" style="left:2321px;top:2665px">4.</span></div>
+<div class="ff6" style="font-size:71px">
+<span class="a" style="left:2376px;top:2661px">&nbsp;</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:2454px;top:2665px;word-spacing:16px">TECHNIQUES USED AT VRIOUS STEPS</span><span class="a" style="left:2454px;top:2750px;word-spacing:10px;letter-spacing:-1px">OF <span class="l8">RECOGNIZING <span class="l6">MUSIC <span class="w11"></span>SYMBOLS:</span></span></span><span class="a" style="left:2321px;top:2919px;word-spacing:41px">The <span class="l6">Fig: <span class="l7">9 <span class="l6">shows <span class="l7">a <span class="l6">tree <span class="w" style="width:47px"></span>of <span class="l6">techniques <span class="l8">or&nbsp;</span></span></span></span></span></span></span></span><span class="a" style="left:2321px;top:3004px;word-spacing:31px">algorithms that can be used for varous steps</span><span class="a" style="left:2321px;top:3089px;word-spacing:12px">followed by OMR systems in order to recognize</span><span class="a" style="left:2321px;top:3173px;word-spacing:1px">the music symbols and to interpret an image score.</span><span class="a" style="left:2321px;top:3258px;word-spacing:11px">Table 1 shows time complexities of some of the</span><span class="a" style="left:2321px;top:3343px">techniques.</span></div>
+<div class="ff1" style="font-size:61px">
+<span class="a" style="left:2767px;top:3630px;word-spacing:-5px">Stave Line <span class="w6"></span>Identification</span><span class="a" style="left:2767px;top:4028px;word-spacing:-6px">Musical Object Location</span><span class="a" style="left:2810px;top:4426px;word-spacing:-8px">Symbol Identification</span><span class="a" style="left:2756px;top:4818px;word-spacing:5px;letter-spacing:-1px">Recognizing Semantics of&nbsp;</span><span class="a" style="left:2899px;top:4894px;word-spacing:6px;letter-spacing:-1px">Music Notation</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:2811px;top:5035px;word-spacing:1px">Fig: 8 <span class="w12"></span>Steps of OMR <span class="l6">Systems</span></span></div>
+</div>
+</div>
+<div class="image_layer" style="z-index: 1">
+<div class="ie_fix">
+<img class="absimg" style="left: 157px; top: -162px; width: 189px; height: 557px; clip: rect(282px 153px 442px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/3-b63c6e574d.jpg">
+<img class="absimg" style="left: 204px; top: 19px; width: 189px; height: 557px; clip: rect(444px 112px 556px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/3-b63c6e574d.jpg">
+<img class="absimg" style="left: 528px; top: 714px; width: 189px; height: 557px; clip: rect(1px 188px 280px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/3-b63c6e574d.jpg">
+</div>
+</div>
+</div>
+
+</div></div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [7, 0, 3, 1, 6], "pageNum": 3};
+
+        pageParams.containerElem = document.getElementById("outer_page_3");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/3-b63c6e574d.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border  not_visible" id="outer_page_4" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  <div style="display: none;"><div class="newpage" id="page4" style="width: 902px; height:1167px">
+<div class="text_layer" style="z-index:2"><div class="ie_fix">
+&nbsp;
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:663px;top:546px">&nbsp;</span></div>
+<div class="ff3" style="font-size:95px">
+<span class="a" style="left:1915px;top:762px;word-spacing:-3px">Steps of OMR Systems</span></div>
+<div class="ff3" style="font-size:68px">
+<span class="a" style="left:866px;top:1987px;word-spacing:-7px">Horizontal Projection</span><span class="a" style="left:866px;top:2072px;word-spacing:-4px">Hough Transform</span><span class="a" style="left:866px;top:2156px;word-spacing:-5px">Template Matching</span><span class="a" style="left:866px;top:2241px;word-spacing:-4px">Frequency Count</span><span class="a" style="left:866px;top:2326px;word-spacing:-4px">Fourier Transform</span><span class="a" style="left:866px;top:2410px">Correlation</span><span class="a" style="left:1658px;top:2580px;word-spacing:-3px">Bounding Box Analysis</span><span class="a" style="left:1658px;top:2665px;word-spacing:-3px">Flood Fill Algorithm</span><span class="a" style="left:2347px;top:3089px;word-spacing:-5px">Template Matching</span><span class="a" style="left:2347px;top:3173px;word-spacing:-4px">Hough Transform</span><span class="a" style="left:2347px;top:3258px;word-spacing:-3px">Technique of Slicing</span><span class="a" style="left:2347px;top:3343px;word-spacing:-6px">Connectivity Analysis</span><span class="a" style="left:2347px;top:3427px;word-spacing:-3px">Bounding Box Analysis</span><span class="a" style="left:2347px;top:3512px;word-spacing:-4px">Horizontal and Vertical Projection</span><span class="a" style="left:2347px;top:3597px;word-spacing:-3px">Contour Tracing</span><span class="a" style="left:2359px;top:3682px;word-spacing:-4px">k-Nearest Neighbor Algorithm (kNN)</span><span class="a" style="left:2347px;top:3767px;word-spacing:-5px">Artificial Neural Networks (ANN)</span><span class="a" style="left:2339px;top:3851px;word-spacing:-3px">Line Adjacency Graphs</span><span class="a" style="left:2347px;top:3936px;word-spacing:-6px">Signature Analysis</span><span class="a" style="left:2347px;top:4021px;word-spacing:-7px">Character Profiles</span><span class="a" style="left:3316px;top:4359px;word-spacing:-6px">Graph Grammars</span><span class="a" style="left:681px;top:4868px;word-spacing:-3px">Fig: 9 Techniques and <span class="w6"></span>Algorithms used at various steps of printed music symbol recognition process</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:810px;top:1587px;word-spacing:-4px">Stave Line Identification</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:1174px;top:1231px">1</span></div>
+<div class="ff1" style="font-size:44px">
+<span class="a" style="left:1211px;top:1216px">st</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:1264px;top:1231px">Step</span><span class="a" style="left:3546px;top:1215px">4</span></div>
+<div class="ff1" style="font-size:44px">
+<span class="a" style="left:3582px;top:1200px">th</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:3643px;top:1215px">Step</span><span class="a" style="left:2739px;top:1215px">3</span></div>
+<div class="ff1" style="font-size:44px">
+<span class="a" style="left:2775px;top:1200px">rd</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2842px;top:1215px">Step</span><span class="a" style="left:1943px;top:1226px">2</span></div>
+<div class="ff1" style="font-size:44px">
+<span class="a" style="left:1998px;top:1211px">nd</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:2070px;top:1226px">Step</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:3164px;top:1602px;word-spacing:-3px">Recognition of&nbsp;</span></div>
+<div class="ff3" style="font-size:81px">
+<span class="a" style="left:3560px;top:1587px">&nbsp;</span></div>
+<div class="ff3" style="font-size:61px">
+<span class="a" style="left:3582px;top:1602px;word-spacing:-4px">Semantics of&nbsp;</span><span class="a" style="left:3338px;top:1680px;word-spacing:-3px">Music Notation</span><span class="a" style="left:1605px;top:1592px;word-spacing:-4px">Musical Object Location</span><span class="a" style="left:2468px;top:1598px;word-spacing:-5px">Symbol Identification</span></div>
+<div class="ff1" style="font-size:67px">
+<span class="a" style="left:1058px;top:1738px">Techniques</span><span class="a" style="left:2704px;top:1810px">Techniques</span><span class="a" style="left:2825px;top:1894px">and</span><span class="a" style="left:2706px;top:1981px">Algorithms</span><span class="a" style="left:1871px;top:1828px">Algorithms</span><span class="a" style="left:3623px;top:1870px">Technique</span></div>
+</div>
+</div>
+<div class="image_layer" style="z-index: 1">
+<div class="ie_fix">
+<img class="absimg" style="left: 112px; top: -381px; width: 501px; height: 874px; clip: rect(716px 96px 873px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4-8da6b509eb.jpg">
+<img class="absimg" style="left: 219px; top: 171px; width: 501px; height: 874px; clip: rect(1px 500px 714px 1px); display: block;" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/4-8da6b509eb.jpg">
+</div>
+</div>
+</div>
+
+</div></div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1], "pageNum": 4};
+
+        pageParams.containerElem = document.getElementById("outer_page_4");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/4-8da6b509eb.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_5" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1], "pageNum": 5};
+
+        pageParams.containerElem = document.getElementById("outer_page_5");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/5-dbcfa0b98b.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_6" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 6, 1, 7, 0, 5], "pageNum": 6};
+
+        pageParams.containerElem = document.getElementById("outer_page_6");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/6-fc7b64123f.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_7" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 1, 5, 2, 0], "pageNum": 7};
+
+        pageParams.containerElem = document.getElementById("outer_page_7");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/7-67cc2fa53f.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_8" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 1, 6], "pageNum": 8};
+
+        pageParams.containerElem = document.getElementById("outer_page_8");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/8-658a126029.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_9" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 1, 6], "pageNum": 9};
+
+        pageParams.containerElem = document.getElementById("outer_page_9");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/9-829759fdc4.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_10" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 7, 0, 4, 6, 1], "pageNum": 10};
+
+        pageParams.containerElem = document.getElementById("outer_page_10");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/10-532b3aee2d.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_11" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 1, 7, 0, 5], "pageNum": 11};
+
+        pageParams.containerElem = document.getElementById("outer_page_11");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/11-9fa27a07eb.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_12" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [5, 3, 7, 0, 1, 6], "pageNum": 12};
+
+        pageParams.containerElem = document.getElementById("outer_page_12");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/12-393e731368.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_13" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3, 6, 1, 7], "pageNum": 13};
+
+        pageParams.containerElem = document.getElementById("outer_page_13");
+          pageParams.contentUrl = "https://html1-f.scribdassets.com/25ix9pp22o1246qr/pages/13-f2639add16.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+      
+  
+  <div class="outer_page only_ie6_border " id="outer_page_14" style="width: 970px; height: 1255px;">
+    
+  <div class="b_tl"></div> 
+  <div class="b_tr"></div> 
+  <div class="b_br"></div> 
+  <div class="b_bl"></div> 
+  <div class="b_t"></div> 
+  <div class="b_r"></div> 
+  <div class="b_b"></div> 
+  <div class="b_l"></div> 
+
+  </div>
+  
+  <script type="text/javascript">
+    (function() {
+        var pageParams = {"origHeight": 1167, "origWidth": 902, "fonts": [3], "pageNum": 14};
+
+        pageParams.containerElem = document.getElementById("outer_page_14");
+          pageParams.contentUrl = "https://html2-f.scribdassets.com/25ix9pp22o1246qr/pages/14-0cc72a5f2b.jsonp";
+          pageParams.blur = false
+        var page = docManager.addPage(pageParams);
+      })();
+  </script>
+
+    
+
+
+
+
+  <!--[if IE]>
+  <script type='text/javascript'>
+    window.docManagerIEAdded = true;
+    if (document.observe) {
+      document.observe('dom:loaded', function () {
+          docManager.allPagesAdded();
+        });
+    } else {
+      window.attachEvent('onload', function () {
+          docManager.allPagesAdded();
+        });
+    }
+  </script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    if (window.docManagerIEAdded != true) {
+      docManager.allPagesAdded();
+    }
+  </script>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div></div><script src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/scribd_api.js" type="text/javascript"></script><script type="text/javascript">(function(){
+  $.getScript('//www.scribd.com/javascripts/4gen.js')
+  var docView = new  window.ResponsiveScribdDocumentView({
+    el: ".attachment_preview[data-attachment='Attachment_4647518']",
+    scribdIds: {
+      docId: 61115488,
+      accessKey: "key-18cinvuqzkprqhs4q3pd",
+    }
+  })
+
+  req("single_work", function () {
+    SingleWork.register_preview_view("Attachment_4647518", docView);
+  });
+})();</script></div></div></div><div class="swp-sidebar hidden"><div class="related-research-sidebar" id="related-research-sidebar"><div class="text-center"><span class="work-download-button-container" data-preview-attachment-id="Attachment_4647518"><a id="8922cf5d16b3260d927c94adc22b52bb" rel="nofollow" data-download="{&quot;attachment_id&quot;:4647518,&quot;asset_id&quot;:782397,&quot;asset_type&quot;:&quot;Work&quot;,&quot;redirect_to&quot;:&quot;/attachments/4647518/download&quot;,&quot;always_allow_download&quot;:false,&quot;track&quot;:null,&quot;button_location&quot;:&quot;swp-sidebar&quot;}" class="btn btn-success work-download-button js-work-download-button btn-block" href="http://www.academia.edu/attachments/4647518/download_file?s=swp-sidebar">Download&nbsp;&nbsp;&nbsp;<span class="label label-inverse-success">PDF</span></a></span></div></div></div></div></div></div><div class="bootstrap" id="download-modal"><i class="close-modal fa fa-dark fa-times fa-lg top-left"></i><br><h3 class="download-modal-work-title js-download-modal-work-title-truncation text-center">Overview of Algorithms and Techniques for Optical Music Recognition</h3><div class="clearfix"><div class="owner-profile col-xs-6"><div class="pull-right"><div class="work-owner"><div class="media"><span class="pull-left"><img class="avatar-md media-object" alt="Wazir Zada Khan" border="0" onerror="if (this.src != &#39;//a.academia-assets.com/images/s65_no_pic.png&#39;) this.src = &#39;//a.academia-assets.com/images/s65_no_pic.png&#39;;" width="65" height="65" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/s65_wazir_zada.khan.jpg"></span><div class="media-body"><h5 class="media-heading"><small><em>Uploaded by</em><br></small><span class="work-owner-name">Wazir Zada Khan</span></h5></div></div></div></div></div><div class="scribd-page-count col-xs-6"><div class="page-count-icon-container"><i class="icon icon-dark icon-file-text-alt icon-3x"></i></div><div class="page-count-text">14 Pages</div><div class="div-helper"></div></div></div><div class="download-prompt clearfix"><a id="b18fa067d18e05341f1c2834c253345f" rel="nofollow" data-download="{&quot;attachment_id&quot;:4647518,&quot;asset_id&quot;:782397,&quot;asset_type&quot;:&quot;Work&quot;,&quot;redirect_to&quot;:&quot;/attachments/4647518/download&quot;,&quot;always_allow_download&quot;:false,&quot;track&quot;:null,&quot;button_location&quot;:&quot;popover&quot;}" class="btn btn-success col-xs-10 col-xs-offset-1 prompt_button doc_download" href="http://www.academia.edu/attachments/4647518/download_file?st=MTQzMTQwOTYzNSwxODguMTkzLjkzLjIxMw%3D%3D&s=popover">DOWNLOAD</a></div></div><div class="bootstrap" id="signup-modal"><div class="modal-top"><div class="clearfix"><i class="close-signup-modal js-email-form-toggle top-left fa fa-times fa-2x text-gray clickable"></i><i class="close-email-form js-email-form-toggle top-left hidden fa fa-arrow-left fa-2x text-gray clickable"></i><div class="signin top-right"><a href="http://www.academia.edu/login">Sign In</a></div><h4 class="text-center"><strong>Sign up</strong></h4></div><br><p class="text-center js-email-form-toggle text-gray-dark">Before we can start your download,<br>please take a moment to join our community<br>of 21,408,441 academic researchers.</p><div class="row oauth-signups js-email-form-toggle"><br><div class="col-xs-6"><button class="btn btn-google btn-block btn-lg btn-v-center-content" id="google-signup-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<strong>Connect</strong></button><script type="text/javascript">new c.Oauth.Button.Connect.Google({
+  el: '#google-signup-button',
+  track: true,
+  registrationParams: { doc_id: 4647518 }
+});</script></div><div class="col-xs-6"><button class="btn btn-fb btn-block btn-lg btn-v-center-content" id="fb-signup-button"><i class="fa fa-facebook-square fa-lg"></i>&nbsp;&nbsp;<strong>Connect</strong></button><script type="text/javascript">new c.Oauth.Button.Connect.Facebook({
+  el: '#fb-signup-button',
+  track: true,
+  registrationParams: { doc_id: 4647518 }
+});</script></div></div><div class="js-email-form-toggle text-center"><br><br><button class="email-signup-button btn btn-none text-gray-dark"><i class="fa fa-envelope fa-lg"></i><small><strong class="text-uppercase">&nbsp;&nbsp;Sign up with email</strong></small></button><br><br></div><div class="email-container js-email-form-toggle hidden"><form id="email-signup-form" class="form-horizontal" action="https://www.academia.edu/registrations" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Xh/9P+yQu2IEH1llnUNYAZxc92CZbk2rN0NQnYdIrrdhDdHBrizic3KXeotIF5o/U/d0dQcMZrKXL5j6rmqJEg=="><div class="row"><div class="col-xs-12"><div class="alert alert-danger" id="signup-modal-validation-errors" style="display:none"><p class="text-center"><strong>We're sorry. There were some errors with your registration:</strong></p><br><ul class="list-unstyled" id="signup-modal-error-list"></ul></div></div></div><div class="form-group"><div class="col-xs-12"><div class="split-input"><input placeholder="First Name" class="form-control input-lg" type="text" name="user[first_name]" id="user_first_name"><input placeholder="Last Name" class="form-control input-lg" type="text" name="user[last_name]" id="user_last_name"></div></div></div><div class="form-group"><div class="col-xs-12"><input placeholder="Email" class="signup-modal-email-input form-control input-lg" type="text" name="user[email]" id="user_email"></div></div><div class="form-group"><div class="col-xs-12"><input placeholder="Password" class="signup-modal-password-input form-control input-lg" type="password" name="user[password]" id="user_password"></div></div><input type="hidden" name="doc_id" id="doc_id" value="4647518"><div class="row finish"><div class="terms col-xs-8"><br><small class="pull-left">By signing up, you agree to our&nbsp;<a href="http://www.academia.edu/terms" id="terms-link" tabindex="-1">Terms</a></small></div><div class="submit col-xs-4 text-center"><img style="display:none;" id="" class="spinner" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/loading.gif" alt="Loading"><button class="btn btn-block btn-primary" id="register-button" type="submit"><i class="fa fa-check fa-2x"></i></button></div></div></form><script type="text/javascript">NewRegistrationController.create({
+    elements: {
+        connect_buttons:  '.connect_buttons',
+        facebook_success: '.facebook_success',
+        form:             '#email-signup-form',
+        spinner:          '#email-signup-form .spinner',
+        show_form_link:   '#no_facebook_account'
+    },
+    fields: {
+        '#user_first_name': null,
+        '#user_last_name':  null,
+        '#user_email':      null,
+        '#user_password':   null
+    },
+    parent_redirect:        true,
+    track:                  true
+});</script></div></div><div class="container-fluid modal-bottom js-email-form-toggle"><div class="row"><div class="col-xs-10 col-xs-offset-1"><div class="row"><div class="col-xs-6 text-center"><img src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/download.png" alt="Download"><p class="text-gray-dark">Download PDFs for<br>over 5.8 Million papers</p><br></div><div class="col-xs-6 text-center"><img src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/share.png" alt="Share"><p class="text-gray-dark"> Share your papers<br>with other researchers</p><br></div></div><div class="row"><div class="col-xs-6 text-center"><img src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/analytics.png" alt="Analytics"><p class="text-gray-dark">See analytics on your<br>profile &amp; papers</p></div><div class="col-xs-6 text-center"><img src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/follow.png" alt="Follow"><p class="text-gray-dark">Follow other people<br>in your field</p></div></div></div></div></div></div><script type="text/javascript">(function(){
+  var now = new Date();
+  req_and_ready('single_work', function() {
+    req_and_ready('session_modal', function () {
+      window.SessionModal.DownloadWork = new SessionModal.DownloadWork();
+      window.SessionModal.Signup = new SessionModal.Signup();
+
+      (new SingleWork.PopoverController(now, 1000)).timed_popover();
+    });
+  });
+})()</script><script type="text/javascript">req('affix',function(){
+  var $toolbar = $('#swp-work-toolbar');
+
+  var getCoauthorTagWrapperOffset = function(){
+    var $coauthorTagWrapper = $('#coauthor-tag-request-toolbar');
+    if (null && $coauthorTagWrapper.is(':visible')) {
+      return $coauthorTagWrapper.outerHeight(true);
+    } else {
+      return 0;
+    }
+  }
+
+  if (false) { // Sidebar affix setup
+
+    var $sidebar = $('#related-research-sidebar')
+    var sidebarOffset = 10; // Top Margin is 10px
+    var sidebarAffixOffset = function(){
+      return $toolbar.offset().top + $toolbar.outerHeight(true) - sidebarOffset + getCoauthorTagWrapperOffset();
+    }
+    $sidebar.affix({ offset: { top: sidebarAffixOffset } });
+
+  } else { // Toolbar affix setup
+    var $workTitle = $("#swp-work-title");
+    var toolbarOffset = 20; // Top Margin is 10px
+    var toolbarAffixTopOffset = function() {
+      return $workTitle.offset().top + $workTitle.outerHeight(true) - toolbarOffset;
+    }
+    $toolbar.affix({offset: { top: toolbarAffixTopOffset } });
+  }
+})</script>
+    </div>
+
+    <div class="bootstrap"><div class="modal fade login-modal" id="login-modal"><div class="login-modal-dialog modal-dialog"><div class="modal-content"><div class="modal-header"><button class="close close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><h4 class="modal-title text-center"><strong>Log In</strong></h4></div><div class="modal-body"><div class="row"><div class="col-xs-10 col-xs-offset-1"><button class="btn btn-fb btn-lg btn-block btn-v-center-content" id="login-facebook-oauth-button"><i class="fa fa-lg fa-facebook-square pull-left"></i><small><strong>Log In&nbsp;</strong>with&nbsp;<strong>Facebook</strong></small></button><br><button class="btn btn-google btn-lg btn-block btn-v-center-content" id="login-google-oauth-button"><i class="fa fa-lg fa-google-plus pull-left"></i><small><strong>Log In&nbsp;</strong>with&nbsp;<strong>Google</strong></small></button><script type="text/javascript">new c.Oauth.Button.Login.Google({el: '#login-google-oauth-button', track: null});
+new c.Oauth.Button.Login.Facebook({el: '#login-facebook-oauth-button', track: null});</script></div></div></div><div class="modal-body"><div class="row"><div class="col-xs-10 col-xs-offset-1"><div class="hr-heading login-hr-heading"><span class="hr-heading-text">or</span></div></div></div></div><div class="modal-body"><div class="row"><div class="col-xs-10 col-xs-offset-1"><form action="https://www.academia.edu/sessions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Xh/9P+yQu2IEH1llnUNYAZxc92CZbk2rN0NQnYdIrrdhDdHBrizic3KXeotIF5o/U/d0dQcMZrKXL5j6rmqJEg=="><div class="form-group"><label class="control-label" for="login-modal-email-input">Email:</label><input class="form-control" id="login-modal-email-input" name="login" type="email"></div><div class="form-group"><label class="control-label" for="login-modal-password-input">Password:</label><input class="form-control" id="login-modal-password-input" name="password" type="password"></div><input type="hidden" name="cp" id="cp"><div class="checkbox"><label><input type="checkbox" name="remember_me" id="remember_me" value="1" checked="checked"><small>Remember me on this computer</small></label></div><br><input type="submit" name="commit" value="Log In" class="btn btn-primary btn-block btn-lg"></form><small><br>or&nbsp;<a data-target="#login-modal-reset-password-container" data-toggle="collapse" href="javascript:void(0)">reset password</a></small><div class="collapse" id="login-modal-reset-password-container"><br><div class="well no-margin"><form action="http://www.academia.edu/reset_password" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Xh/9P+yQu2IEH1llnUNYAZxc92CZbk2rN0NQnYdIrrdhDdHBrizic3KXeotIF5o/U/d0dQcMZrKXL5j6rmqJEg=="><p>Enter the email address you signed up with and we'll email you a reset link.</p><div class="form-group"><input class="form-control" name="email" type="email"></div><input type="submit" name="commit" value="Email me a link" class="btn btn-primary btn-block"></form></div></div><script type="text/javascript">(function() {
+  req_and_ready("collapse", function() {
+    return $("#login-modal-reset-password-container").on("shown.bs.collapse", function() {
+      return $(this).find("input[type=email]").focus();
+    });
+  });
+
+}).call(this);
+</script></div></div></div><div class="modal-footer"><div class="text-center"><small>Need an account?&nbsp;<a href="http://www.academia.edu/signup">Click here to sign up</a></small></div></div></div></div></div></div><script type="text/javascript">(function() {
+  var host;
+
+  host = window.location.hostname;
+
+  if (host === $domain || host === ("www." + $domain)) {
+    $("#nav_log_in").click(function(e) {
+      e.preventDefault();
+      return $("#login-modal").on('shown.bs.modal', function() {
+        return $(this).find("#login-modal-email-input").focus();
+      }).modal('show');
+    });
+  }
+
+}).call(this);
+</script>
+      <div id="footer">
+  <div class="footer_content clearfix">
+    <div class="footer_links"><div class="footer_link_block secondary_footer"><ul><li><a href="http://www.academia.edu/Jobs">Job Board</a></li><li><a href="http://www.academia.edu/about">About</a></li><li><a href="http://www.academia.edu/press">Press</a></li><li><a href="https://medium.com/@academia">Blog</a></li><li><a href="http://www.academia.edu/stories">Stories</a></li><li><a href="http://www.academia.edu/terms">Terms</a></li><li><a href="http://www.academia.edu/privacy">Privacy</a></li><li><a href="http://www.academia.edu/copyright">Copyright</a></li><li><a href="http://www.academia.edu/hiring"><i class="fa fa-briefcase"></i>&nbsp;<strong>We're Hiring!</strong></a></li><li><a href="http://support.academia.edu/"><i class="fa fa-question-circle"></i>&nbsp;<strong>Help Center</strong></a></li></ul></div></div>
+  </div>
+</div>
+<div id="credit">
+  Academia © 2015
+</div>
+
+<iframe id="signup-completed" style="display: none;"></iframe>
+
+<script type="text/javascript">$(function() {
+    var viewportWidth = $(window).width();
+    _gaq.push(['_trackEvent', 'Viewport Dimensions',
+               'Viewport Dimensions Initial',
+               viewportWidth + 'x' + $(window).height(), viewportWidth, true]);
+
+    var gaResizeCompleteHl;
+    $(window).resize(function(){
+        clearTimeout(gaResizeCompleteHl);
+        gaResizeCompleteHl = setTimeout(function(){
+            var viewportWidth=$(window).width();
+            _gaq.push(['_trackEvent', 'Viewport Dimensions',
+                       'Viewport Dimensions Resized',
+                       viewportWidth + 'x' + $(window).height(), viewportWidth, true]);
+        }, 500);
+    });
+});
+
+function read_cookie(cookie_name) {
+    var my_cookie=""+document.cookie;
+    var ind=my_cookie.indexOf(cookie_name);
+    if (ind==-1 || cookie_name=="") return "";
+    var ind1=my_cookie.indexOf(';',ind);
+    if (ind1==-1) ind1=my_cookie.length;
+    return unescape(my_cookie.substring(ind+cookie_name.length+1,ind1));
+};
+var getVar = read_cookie('__utmv');
+
+  if( (getVar.indexOf("/status=registered") == -1) && (getVar.indexOf("/status=non_registered") == -1) ){
+      _gaq.push(['_setVar', '/status=non_registered']);
+  };
+
+</script>
+
+
+
+    <div id="overlay_background"></div>
+    <div id="bootstrap-modal-container" class="bootstrap"></div>
+
+
+  </div><iframe name="oauth2relay649122767" id="oauth2relay649122767" src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe>
+
+
+
+  
+  
+
+
+
+    <script type="text/javascript">
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+  
+
+
+<iframe src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/auth(1).html" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe src="./Overview of Algorithms and Techniques for Optical Music Recognition _ Wazir Zada Khan - Academia.edu_files/auth.html" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="preload_bed0" style="display: none;"></iframe><div id="scribd_pager" style="position: absolute; top: 282px; left: 1097px;"><div class="pager_top"><div class="row"><div class="prev_page disabled"></div></div><div class="middle"><div class="row"><input class="page_input" type="text"></div><div class="row"><span class="decor"> of </span><span class="max_page">14</span></div></div><div class="row"><div class="next_page"></div></div></div><div class="pager_bottom hide_zoom_controls"><div class="row"><div class="zoom_in"><span class="zoom_in_icon"></span></div><div class="zoom_out"><span class="zoom_out_icon"></span></div></div><div class="enter_fullscreen"></div><div class="exit_fullscreen"></div></div></div></body></html>

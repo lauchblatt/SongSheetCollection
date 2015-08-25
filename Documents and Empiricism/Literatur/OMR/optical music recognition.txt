@@ -1,0 +1,26 @@
+Allgemeines:
+Erkennungsrate liegt bei ca 90%, sofern es sich nicht um Handschrift handelt.
+Viele verschiedene Ansätze und Algorithmen, daraus folgt, dass direkte Vergleiche schwer zu bewerkstelligen sind.
+Häufigster Ansatz:
+	Erkennung der Notenlinien und anschließender Entfernung dieser
+	zusammenhängende Noten werden erkannt und einzeln behandelt
+
+Als Outputformat für uns MusicXML am geeignetsten.
+
+Relevanteste Software (Output Format):
+
+
+SmartScore (Finale, MIDI, NIFF, PDF) 330€ -- ab 100€
+SharpEye (MIDI, MusicXML, NIFF) 160€
+PhotoScore (MIDI, MusicXML, NIFF, PhotoScore, WAVE) 240€
+Capella-Scan (Capella, MIDI, MusicXML) 190€
+
+
+ScoreMaker (MusicXML)
+Vivaldi Scan (Vivaldi, XML, MIDI)
+
+Audiveris (MusicXML)
+Gamera (XML)
+
+OpenOMR
+

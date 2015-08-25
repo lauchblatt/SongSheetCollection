@@ -1,0 +1,15 @@
+Reviews unterschiedlicher OCR-Tools:
+
+http://ocr-software-review.toptenreviews.com/
+http://www.makeuseof.com/tag/5-best-ocr-tools-extracting-text-images/
+http://lifehacker.com/5624781/five-best-text-recognition-tools
+http://www.simpleocr.com/OCR_Software_Guide.asp
+https://winbeginner.com/the-best-ocr-software/
+http://www.freewaregenius.com/how-to-extract-text-from-images-a-comparison-of-free-ocr-tools/
+
+Tabellarische Auflistung von OCR-Tools:
+http://en.wikipedia.org/wiki/Comparison_of_optical_character_recognition_software
+
+Reviews speziell zu kostenfreien OCR-Tools:
+http://www.netzwelt.de/news/121651-ocr-beste-gratis-software-texterkennung.html
+http://www.techsupportalert.com/best-free-ocr-software.htm
