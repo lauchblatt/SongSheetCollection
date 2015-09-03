@@ -40,10 +40,15 @@ public class XmlToSolrTransformer {
     			
     			for(int k = 0; k < textStringsList.getLength(); k++){
     				Element textString = (Element) textStringsList.item(k);
-    				System.out.println(textString.getAttribute("CONTENT"));
+    				text = text + textString.getAttribute("CONTENT");
     			}
+    			//Adding a new Line after every TextLine
+    			text = text + "\n";
     		}
+    		text = text + "\n";
     	}
+    	
+    	System.out.println(text);
 		
 		return null;
 	}
