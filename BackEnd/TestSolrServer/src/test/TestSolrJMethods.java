@@ -24,9 +24,10 @@ public class TestSolrJMethods {
 
 	public static void main(String[] args) throws SolrServerException, IOException, ParserConfigurationException, SAXException {
 		
-		XmlToSolrTransformer toSolrTransformer = new XmlToSolrTransformer("assets/ubr16444_0295.xml");
+		XmlToSolrTransformer toSolrTransformer = new XmlToSolrTransformer("assets/abby-xml/ubr16444_0295.xml");
 		SolrInputDocument solrDoc = toSolrTransformer.createSolrDocument();
-	   
+		System.out.println("end");
+		
 	}
 	
 	public static void initClient(){
