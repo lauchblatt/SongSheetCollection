@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v2#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd">
+<Description>
+<MeasurementUnit>pixel</MeasurementUnit>
+<OCRProcessing ID="IdOcr"><ocrProcessingStep><processingDateTime>2015-06-16</processingDateTime><processingSoftware><softwareCreator>ABBYY</softwareCreator><softwareName>ABBYY Recognition Server</softwareName><softwareVersion>4.0</softwareVersion></processingSoftware></ocrProcessingStep></OCRProcessing>
+</Description>
+<Styles>
+<ParagraphStyle ID="StyleId-FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF-" ALIGN="Left" LEFT="0" RIGHT="0" FIRSTLINE="0"/>
+</Styles>
+<Layout>
+<Page ID="Page1" PHYSICAL_IMG_NR="1">
+<PrintSpace HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0">
+<ComposedBlock ID="BlockId-E02E9B1D-693A-456C-B3AF-FF8BC3FB76D2-" HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0" TYPE="container"><Illustration ID="BlockId-D55E6878-A4BF-4909-B775-3355A14FC5E9-" HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0"/></ComposedBlock><GraphicalElement ID="BlockId-A6BB7DB7-1551-4F35-A740-F1A86364D8A5-" HEIGHT="47" WIDTH="2064" VPOS="0" HPOS="44"/><GraphicalElement ID="BlockId-3980D990-E0C7-43D3-A018-C07F3AFE9634-" HEIGHT="7" WIDTH="177" VPOS="432" HPOS="422"/><GraphicalElement ID="BlockId-F05EDDE3-D023-4ED6-9B85-9B654CE5C8DA-" HEIGHT="31" WIDTH="400" VPOS="932" HPOS="845"/><GraphicalElement ID="BlockId-F0F218F0-FC3D-4839-AB3F-209E73E652D8-" HEIGHT="7" WIDTH="138" VPOS="1990" HPOS="2358"/><GraphicalElement ID="BlockId-7B593032-5E67-45FE-8DED-4CEE1012D2B9-" HEIGHT="9" WIDTH="180" VPOS="2600" HPOS="1600"/><GraphicalElement ID="BlockId-5477B478-0592-483C-8E5B-FEDDEE1A66DA-" HEIGHT="1074" WIDTH="49" VPOS="0" HPOS="2694"/><GraphicalElement ID="BlockId-5F12813B-8F52-4297-BC8E-0F4AEA3FA0AD-" HEIGHT="632" WIDTH="40" VPOS="1148" HPOS="2703"/><GraphicalElement ID="BlockId-53C196F3-FCA1-4F53-B79C-023A73007074-" HEIGHT="1577" WIDTH="35" VPOS="1814" HPOS="2708"/>
+</PrintSpace>
+</Page>
+</Layout>
+</alto>

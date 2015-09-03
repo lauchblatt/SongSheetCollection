@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v2#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd">
+<Description>
+<MeasurementUnit>pixel</MeasurementUnit>
+<OCRProcessing ID="IdOcr"><ocrProcessingStep><processingDateTime>2015-06-16</processingDateTime><processingSoftware><softwareCreator>ABBYY</softwareCreator><softwareName>ABBYY Recognition Server</softwareName><softwareVersion>4.0</softwareVersion></processingSoftware></ocrProcessingStep></OCRProcessing>
+</Description>
+<Styles>
+<ParagraphStyle ID="StyleId-FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF-" ALIGN="Left" LEFT="0" RIGHT="0" FIRSTLINE="0"/>
+</Styles>
+<Layout>
+<Page ID="Page1" PHYSICAL_IMG_NR="1">
+<PrintSpace HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0"><Illustration ID="BlockId-2AC88D9B-5A33-4CFF-ABD1-D98D345C0726-" HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0"/><GraphicalElement ID="BlockId-ED9EE1B2-09A4-4928-8B9A-F49E666DB927-" HEIGHT="16" WIDTH="331" VPOS="759" HPOS="317"/><GraphicalElement ID="BlockId-32F7BC9A-C0BE-4E9D-AF3B-E7A786C4EBEA-" HEIGHT="13" WIDTH="223" VPOS="921" HPOS="1133"/><GraphicalElement ID="BlockId-BD6D9B7E-CEE5-4A88-8BF9-7DE6DFB31042-" HEIGHT="10" WIDTH="252" VPOS="1876" HPOS="1317"/><GraphicalElement ID="BlockId-608F6C08-03CD-48AD-B735-E6D2BF485189-" HEIGHT="6" WIDTH="184" VPOS="1982" HPOS="1596"/><GraphicalElement ID="BlockId-F77A5AF9-30EF-4770-A083-3ACD172FC706-" HEIGHT="24" WIDTH="711" VPOS="2595" HPOS="1439"/><GraphicalElement ID="BlockId-3B657E8D-4774-4B4C-A16F-6857FC25EB6E-" HEIGHT="15" WIDTH="213" VPOS="3045" HPOS="197"/><GraphicalElement ID="BlockId-ADE20BC0-51B7-460D-B886-170F4D61968E-" HEIGHT="1531" WIDTH="50" VPOS="51" HPOS="2693"/><GraphicalElement ID="BlockId-F22A9F49-6A7E-465F-B84C-B52D38DF3F91-" HEIGHT="822" WIDTH="37" VPOS="1658" HPOS="2706"/><GraphicalElement ID="BlockId-F8B3DDA4-537D-4B0A-AE22-949E6303E03A-" HEIGHT="416" WIDTH="29" VPOS="2976" HPOS="2714"/>
+</PrintSpace>
+</Page>
+</Layout>
+</alto>

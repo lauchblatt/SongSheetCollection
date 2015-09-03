@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v2#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd">
+<Description>
+<MeasurementUnit>pixel</MeasurementUnit>
+<OCRProcessing ID="IdOcr"><ocrProcessingStep><processingDateTime>2015-06-16</processingDateTime><processingSoftware><softwareCreator>ABBYY</softwareCreator><softwareName>ABBYY Recognition Server</softwareName><softwareVersion>4.0</softwareVersion></processingSoftware></ocrProcessingStep></OCRProcessing>
+</Description>
+<Styles>
+<ParagraphStyle ID="StyleId-FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF-" ALIGN="Left" LEFT="0" RIGHT="0" FIRSTLINE="0"/>
+</Styles>
+<Layout>
+<Page ID="Page1" PHYSICAL_IMG_NR="1">
+<PrintSpace HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0">
+<ComposedBlock ID="BlockId-114E79B4-50D2-485B-B603-904DACA6E95B-" HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0" TYPE="container"><Illustration ID="BlockId-EBF21072-DAE1-4A3C-A8A3-601AD400A4A9-" HEIGHT="3440" WIDTH="2743" VPOS="0" HPOS="0"/></ComposedBlock><GraphicalElement ID="BlockId-3AE56893-412F-4209-9CA0-F77141542B28-" HEIGHT="12" WIDTH="233" VPOS="50" HPOS="656"/><GraphicalElement ID="BlockId-213491E5-76F6-4745-91E4-38196FBB4967-" HEIGHT="11" WIDTH="180" VPOS="194" HPOS="1271"/><GraphicalElement ID="BlockId-9B7E3F69-D6F2-4C78-8A27-5ACDCF9232D3-" HEIGHT="15" WIDTH="965" VPOS="446" HPOS="1717"/><GraphicalElement ID="BlockId-266DC4C5-CC49-493E-B189-0DA2DDBB6CF1-" HEIGHT="13" WIDTH="201" VPOS="1681" HPOS="1379"/><GraphicalElement ID="BlockId-AE3F1EBF-5181-47DF-BDE0-D3B04B299102-" HEIGHT="18" WIDTH="275" VPOS="1698" HPOS="1648"/><GraphicalElement ID="BlockId-DB132AD3-705E-4B1C-94C3-21292132AE0A-" HEIGHT="14" WIDTH="250" VPOS="2277" HPOS="694"/><GraphicalElement ID="BlockId-D924A350-3DB0-4C45-A999-641FE4640698-" HEIGHT="8" WIDTH="189" VPOS="2669" HPOS="265"/><GraphicalElement ID="BlockId-DF25E8FD-5EE7-4DA6-A416-37F0E1971474-" HEIGHT="942" WIDTH="44" VPOS="340" HPOS="0"/><GraphicalElement ID="BlockId-760C1873-0689-4C55-95B9-C10FCB59F868-" HEIGHT="1558" WIDTH="60" VPOS="56" HPOS="2683"/>
+</PrintSpace>
+</Page>
+</Layout>
+</alto>

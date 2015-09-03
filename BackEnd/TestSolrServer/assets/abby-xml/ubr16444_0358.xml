@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<alto xmlns="http://www.loc.gov/standards/alto/ns-v2#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/standards/alto/ns-v2# http://www.loc.gov/standards/alto/alto-v2.0.xsd">
+<Description>
+<MeasurementUnit>pixel</MeasurementUnit>
+<OCRProcessing ID="IdOcr"><ocrProcessingStep><processingDateTime>2015-06-16</processingDateTime><processingSoftware><softwareCreator>ABBYY</softwareCreator><softwareName>ABBYY Recognition Server</softwareName><softwareVersion>4.0</softwareVersion></processingSoftware></ocrProcessingStep></OCRProcessing>
+</Description>
+<Styles><TextStyle ID="font0" FONTFAMILY="Times New Roman" FONTSIZE="12"/><TextStyle ID="font1" FONTFAMILY="Times New Roman" FONTSIZE="13"/>
+<ParagraphStyle ID="StyleId-FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF-" ALIGN="Left" LEFT="0" RIGHT="0" FIRSTLINE="0"/>
+<ParagraphStyle ID="StyleId-E53BCF1E-904C-4B09-9493-98D5C39BA365-" ALIGN="Left" LEFT="0" RIGHT="0" FIRSTLINE="0" LINESPACE="12"/>
+<ParagraphStyle ID="StyleId-E8B8820E-7428-4A1E-A94B-240B6B84E892-" ALIGN="Center" LEFT="0" RIGHT="0" FIRSTLINE="0"/>
+</Styles>
+<Layout>
+<Page ID="Page1" PHYSICAL_IMG_NR="1">
+<PrintSpace HEIGHT="3440" WIDTH="2742" VPOS="0" HPOS="0">
+<TextBlock ID="BlockId-C9DD2920-C423-450F-B2EF-1493406F6195-" HEIGHT="140" WIDTH="1900" VPOS="278" HPOS="614" STYLEREFS="StyleId-E53BCF1E-904C-4B09-9493-98D5C39BA365- font1">
+<TextLine HEIGHT="74" WIDTH="1869" VPOS="291" HPOS="629"><String CONTENT="und" HEIGHT="45" WIDTH="115" VPOS="291" HPOS="629"/><SP WIDTH="42" VPOS="291" HPOS="745"/><String CONTENT="wählte" HEIGHT="47" WIDTH="234" VPOS="291" HPOS="788"/><SP WIDTH="50" VPOS="302" HPOS="1023"/><String CONTENT="sich" HEIGHT="47" WIDTH="151" VPOS="294" HPOS="1074"/><SP WIDTH="43" VPOS="296" HPOS="1226"/><String CONTENT="den" HEIGHT="45" WIDTH="114" VPOS="296" HPOS="1270"/><SP WIDTH="44" VPOS="306" HPOS="1385"/><String CONTENT=".schönsten" HEIGHT="56" WIDTH="388" VPOS="299" HPOS="1430"/><SP WIDTH="46" VPOS="299" HPOS="1819"/><String CONTENT="Sch&amp;tat*" HEIGHT="48" WIDTH="265" VPOS="299" HPOS="1866"/><SP WIDTH="24" VPOS="299" HPOS="2132"/><String STYLE="subscript" CONTENT="f" HEIGHT="25" WIDTH="20" VPOS="340" HPOS="2157"/><String CONTENT="eine" HEIGHT="47" WIDTH="148" VPOS="303" HPOS="2184"/><SP WIDTH="45" VPOS="312" HPOS="2333"/><String CONTENT="aus" HEIGHT="36" WIDTH="119" VPOS="314" HPOS="2379"/></TextLine>
+<TextLine HEIGHT="50" WIDTH="423" VPOS="363" HPOS="631"><String CONTENT="dem" HEIGHT="44" WIDTH="117" VPOS="367" HPOS="631"/><SP WIDTH="41" VPOS="366" HPOS="749"/><String CONTENT="Kreise." HEIGHT="50" WIDTH="263" VPOS="363" HPOS="791"/></TextLine>
+</TextBlock>
+<TextBlock ID="BlockId-B2B6A858-707C-4FA7-BABB-BF83727201B9-" HEIGHT="66" WIDTH="498" VPOS="626" HPOS="1368" STYLEREFS="StyleId-E8B8820E-7428-4A1E-A94B-240B6B84E892- font0">
+<TextLine HEIGHT="50" WIDTH="466" VPOS="638" HPOS="1383"><String STYLE="bold" CONTENT="Eirjni" HEIGHT="48" WIDTH="154" VPOS="638" HPOS="1383"/><SP WIDTH="45" VPOS="638" HPOS="1538"/><String STYLE="bold" CONTENT="Hansen." HEIGHT="50" WIDTH="265" VPOS="638" HPOS="1584"/></TextLine>
+</TextBlock>
+<TextBlock ID="BlockId-C05A2335-9B1C-4CF8-8102-9782C8A6F8A4-" HEIGHT="68" WIDTH="382" VPOS="696" HPOS="1844" STYLEREFS="StyleId-E53BCF1E-904C-4B09-9493-98D5C39BA365- font1">
+<TextLine HEIGHT="51" WIDTH="349" VPOS="708" HPOS="1859"><String CONTENT="Nov.1919*" HEIGHT="51" WIDTH="349" VPOS="708" HPOS="1859"/></TextLine>
+</TextBlock>
+</PrintSpace>
+</Page>
+</Layout>
+</alto>
